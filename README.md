@@ -35,7 +35,8 @@
 ### Components
 
 1) Pixel color (**0x00** to **0xFE** pixels) (correspond to a palette **index**)
-2) EOGL (end of graphic line) -- a **0x00** byte that signal the end of a sprite line
+2) Blink delay (**0x00** to **0xFF**) represents a delay (in frames) where the pixel's color will be swapped to another (if the color is exactly the same, the pixel will not be drawn)
+3) EOGL (end of graphic line) -- a **0x00** byte that signal the end of a sprite line
 
 ## Compression
 
