@@ -10,7 +10,7 @@
 
 ## Palette <a name="main-palette"></a>
 
-> Sprite palette is a small index containing a maximum of 255 colors
+> Sprite palette is a small index containing a maximum of 254 colors
 - 1 byte for color number
 - 3 byte per color *HEX (R,G,B)*
 
@@ -42,9 +42,9 @@
 
 ### Components
 
-1) Pixel color (**0x01** to **0xFE** pixels) (correspond to a palette **index**)
+1) Pixel color (**0x00** to **0xFE** pixels) (correspond to a palette **index**)
+***NOTE:** a palette index corresponding to 0xFF, represents rgba(0, 0, 0, 0)*
 2) Blink delay (**0x01** to **0xFF**) represents a delay (in frames) where the pixel's color will be swapped to another (if the color is exactly the same, the pixel will not be drawn)
-3) EOGL (end of graphic line) -- a **0x00** byte that signal the end of a sprite line (*last byte of data length*)
 
 ## Compression <a name="compression"></a>
 
