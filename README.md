@@ -20,3 +20,20 @@
 *Is an invalid color palette, as the fixed length is set to 1, and it contains two colors.*
 
 **In that case the behavior is undefined**
+
+## Sprite metadata
+
+> Sprite metadata is a chunk of data that's placed just before sprite data
+
+### Components
+1) Data length (ranging from **0x00** to **0xFF**)
+
+## Sprite data
+
+> Sprite data is a way of storing graphics and their corresponding colors in few bytes
+
+### Components
+
+1) Pixel color (**0x00** to **0xFE** pixels) (correspond to a palette **index**)
+2) EOGL (end of graphic line) -- a **0x00** byte that signal the end of a sprite line
+
