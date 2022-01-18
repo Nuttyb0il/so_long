@@ -37,3 +37,14 @@
 1) Pixel color (**0x00** to **0xFE** pixels) (correspond to a palette **index**)
 2) EOGL (end of graphic line) -- a **0x00** byte that signal the end of a sprite line
 
+## Compression
+
+### A list of potential algorithms that could be implemented
+
+- Difference storing
+
+    > Difference storing is currently only a concept
+
+    While creating a palette, DS algorithm can store a decimal difference (1 byte) between palette[n-1] and palette[n], thus saving **6** to **2** bytes.
+
+    This could be used to create shading, or gradients.
