@@ -17,7 +17,6 @@ if os.path.exists(args.output):
     os.remove(args.output)
 colors = []
 
-
 def convert_rgb_to_index(r: int, g: int, b: int, palette: list) -> int:
     for p in palette:
         if p[0] == r and p[1] == g and p[2] == b:
@@ -26,7 +25,6 @@ def convert_rgb_to_index(r: int, g: int, b: int, palette: list) -> int:
 strawberry = Image.open(IMAGE_PATH)
 strawberry = strawberry.convert("RGBA")
 x, y = strawberry.size
-assert x <= 0xFF and y <= 0xFF
 print("Image size:", strawberry.size)
 print("Extracting colors -> ", end="")
 for i in range(x):
@@ -57,8 +55,10 @@ with open(args.output, "ab+") as f:
             if a != 255:
                 pixels.append(0xFF)
             index = convert_rgb_to_index(r, g, b, colors)
-            assert index >= 0
-            pixels.append(index)
+            if index < 0:
+                pixels.append(0xFF)
+            else:
+                pixels.append(index)
     print("✅")
     # Write height and width
     print("Writing sprite size -> ", end="")

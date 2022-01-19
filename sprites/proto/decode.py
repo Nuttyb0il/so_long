@@ -46,7 +46,7 @@ with open(SPRITE_PATH, "rb") as f:
         i, j = 0, 0
         print("Size : {}, {}".format(pixel_image.size[0], pixel_image.size[1]))
         for k in range(pixel_count):
-            print("Writing at {}, {} -- Progress : {:.2f}%  ".format(i, j, written_pixels/pixel_count*100), end='\n')
+            print("Writing at {}, {} -- Progress : {:.2f}%  ".format(i, j, written_pixels/pixel_count*100), end='\r')
             # print("Reading sprite pixels -> {}/{}".format(i+1, pixel_count), end="\r")
             pixel = f.read(1)[0]
             if pixel == 0xFF:
@@ -62,10 +62,11 @@ with open(SPRITE_PATH, "rb") as f:
                 pprint(colors)
                 exit(1)
             try:
-                pixel_image.putpixel((j, i), color)
+                pixel_image.putpixel((i, j), color)
             except:
                 print("\nError :")
                 print("Tried to access {},{} but exceed image".format(i, j, (x, y)))
+                print("Image size : {}, {}".format(x, y))
                 pprint(colors)
                 exit(1)
             written_pixels += 1
@@ -74,4 +75,4 @@ with open(SPRITE_PATH, "rb") as f:
                 i = 0
                 j += 1
         print()
-        pixel_image.save(OUTPUT_PATH, "PNG", optimize=True)
+        pixel_image.save(OUTPUT_PATH, "PNG")
