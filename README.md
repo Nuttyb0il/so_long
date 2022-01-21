@@ -8,6 +8,9 @@
 2. [Compression](#compression)
 	1) [Difference Storing](#difference-storing)
 	2) [Pattern repeating](#pattern-repeating)
+3. [Encoding and decoding](#encode-decode)
+	1) [Encode](#howto-encode)
+	2) [Decode](#howto-decode)
 
 ## Palette <a name="main-palette"></a>
 
@@ -60,3 +63,41 @@
 
 	While storing pixels to sprite file, pattern repeating find how many repeating pixels are placed in a row [n] -> [n+Inf], thus saving a maximum of **65535** bytes (**89** bytes in practice)
 	It's implementation is stored [here](#components-repeat)
+
+## Encoding and decoding <a name="encode-decode"></a>
+> Decoding isn't interesting, and should be used for debugging
+
+### Encoding <a name="howto-encode"></a>
+
+> Encoding is the process of turning a JPEG or PNG file into a .sprite file
+	
+- Use the `encode.py` script in `sprites/proto` to encode any JPEG or PNG file
+
+	```
+		usage: encode.py [-h] -i INPUT [-o OUTPUT] [-c]
+
+		optional arguments:
+		-h, --help            show this help message and exit
+		-i INPUT, --input INPUT
+								Input sprite file
+		-o OUTPUT, --output OUTPUT
+								Output image file
+		-c, --compressed      Compress sprite
+	```
+
+
+### Decoding <a name="howto-decode"></a>
+> Decoding is the process of turning a .sprite file into a PNG file
+	
+- Use the `decode.py` script in `sprites/proto` to decode any .sprite file
+
+	```
+		usage: decode.py [-h] -i INPUT -o OUTPUT
+
+		optional arguments:
+		-h, --help            show this help message and exit
+		-i INPUT, --input INPUT
+								Input sprite file
+		-o OUTPUT, --output OUTPUT
+								Output image file
+	```
