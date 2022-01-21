@@ -56,8 +56,7 @@
 
 - Pattern repeating <a name="pattern-repeating"></a>
 	
-	> Pattern repeating is currently in debugging state
+	> Pattern repeating is currently implemented, and can be used using `-c` flag with the encoder
 
-	While storing pixels to sprite file, pattern repeating find how many repeating pixels are placed in a row [n] -> [n+Inf], thus saving a maximum
-	of **65535** bytes
+	While storing pixels to sprite file, pattern repeating find how many repeating pixels are placed in a row [n] -> [n+Inf], thus saving a maximum of **65535** bytes (**89** bytes in practice)
 	It's implementation is stored [here](#components-repeat)
