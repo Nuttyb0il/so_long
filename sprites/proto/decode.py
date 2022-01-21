@@ -1,5 +1,6 @@
 import os
 from pprint import pprint
+import traceback
 from PIL import Image
 import argparse
 
@@ -34,16 +35,22 @@ def decode(sprite_path, output):
         x, y = f.read(2)
         print("Dimensions: {}x{}".format(x, y))
         pixels = []
-        try:
-            while True:
-                if compressed:
+        # read until end of file
+        while True:
+            if compressed:
+                try:
                     repeat_count, palette_index = f.read(2)
-                    for _ in range(repeat_count):
+                    print(repeat_count, palette_index)
+                    for _ in range(repeat_count + 1):
                         pixels.append(palette_index)
-                else:
+                except:
+                    break
+            else:
+                try:
                     pixels.append(f.read(1)[0])
-        except:
-            pass
+                except:
+                    break
+        print("Pixel count", len(pixels))
         with Image.new("RGBA", (x, y)) as image:
             print("Decoding image -> ", end="")
             for i in range(y):
@@ -57,7 +64,10 @@ def decode(sprite_path, output):
                         print("❌\nCRASH :")
                         print("Tried to access: {}, {}".format(j, i))
                         print("Image size : {}x{}".format(x, y))
-                        print("Color index : {}".format(pixels[i * x + j]))
+                        try:
+                            print("Pixels index : {}".format(pixels[i * x + j]))
+                        except:
+                            print("Pixels index : Out of range ({} >= {})".format(i * x + j, len(pixels)))
                         print("Color count : {}".format(len(colors)))
                         print("Color list :")
                         pprint(colors)

@@ -14,20 +14,26 @@ print(PIL.__version__)
 if "sprites/proto" not in os.getcwd():
     os.chdir("sprites/proto")
 IMAGE_PATH = args.input
+neighbors_total = 0
 def convert_rgb_to_index(r: int, g: int, b: int, palette: list) -> int:
     for p in palette:
         if p[0] == r and p[1] == g and p[2] == b:
             return palette.index(p)
     return -1
 
-def count_neighbors(haystack: list, offset: int) -> list:
-    needle = haystack[offset]
+def count_neighbors(haystack: list, offset: int) -> int:
+    """
+    Counts the number of identical neighbors in a list.
+    :param haystack: The list to search.
+    :param offset: The offset to start searching from.
+    :return: The number of identical neighbors.
+    """
     count = 0
-    for i in range(offset, len(haystack)+1):
-        if haystack[i] == needle:
+    for i in range(offset, len(haystack)):
+        if haystack[i] == haystack[offset] and offset != i:
             count += 1
         else:
-            return count
+            break
     return count
 
 def bytes_to_human(bytes: int) -> str:
@@ -39,8 +45,8 @@ def bytes_to_human(bytes: int) -> str:
         return "{:.2f} MB".format(bytes / 1024 / 1024)
     else:
         return "{:.2f} GB".format(bytes / 1024 / 1024 / 1024)
-
 def encode(image, output=None, compressed=False):
+    global neighbors_total
     if output is None:
         output = args.input.replace(".png", ".sprite")
     if os.path.exists(output):
@@ -95,12 +101,14 @@ def encode(image, output=None, compressed=False):
         
         skip = 0
         for i, p in enumerate(pixels):
+            print(p, skip)
             if skip != 0:
                 skip -= 1
                 continue
-            print("Writing sprite pixels -> {}/{}".format(i+1, len(pixels)), end="\r")
+            # print("Writing sprite pixels -> {}/{}".format(i+1, len(pixels)), end="\r")
             if compressed:
                 neighbors = count_neighbors(pixels, i)
+                neighbors_total += neighbors - 1
                 skip = neighbors
                 f.write(bytes([neighbors]))
             f.write(bytes([p]))
@@ -108,6 +116,9 @@ def encode(image, output=None, compressed=False):
     image.close()
     print("Output : {}".format(args.output))
     print("Size : {} -- {}".format(bytes_to_human(os.path.getsize(output)), "compressed" if compressed else "uncompressed"))
+    if compressed:
+        pass
+        print("Saved {} using pattern repeat.".format(bytes_to_human(neighbors_total)))
 strawberry = Image.open(IMAGE_PATH)
 strawberry = strawberry.convert("RGBA")
 encode(strawberry, args.output, args.compressed)
