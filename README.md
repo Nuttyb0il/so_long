@@ -4,9 +4,10 @@
 
 1. [Palette](#main-palette)
 	1) [Examples](#palette-examples)
-	2) [Sprite Metadata](#sprite-metadata)
-	3) [Sprite Data](#sprite-data)
+	2) [Sprite Data](#sprite-data)
 2. [Compression](#compression)
+	1) [Difference Storing](#difference-storing)
+	2) [Pattern repeating](#pattern-repeating)
 
 ## Palette <a name="main-palette"></a>
 
@@ -29,31 +30,34 @@
 
 **In that case the behavior is undefined**
 
-## Sprite metadata <a name="sprite-metadata"></a>
-
-> Sprite metadata is a chunk of data that's placed just before sprite data
-
-### Components
-1) Data length (ranging from **0x0000** to **0xFFFF**)
-
 ## Sprite data <a name="sprite-data"></a>
 
 > Sprite data is a way of storing graphics and their corresponding colors in few bytes
 
 ### Components
 
+0) Compressed (**0x00** or **0x01**), 1 byte representing if the palette is compressed (has repeat count) or not
 1) Pixel color (**0x00** to **0xFE** pixels) (correspond to a palette **index**)
 ***NOTE:** a palette index corresponding to 0xFF, represents rgba(0, 0, 0, 0)*
 2) Blink delay (**0x01** to **0xFF**) represents a delay (in frames) where the pixel's color will be swapped to another (if the color is exactly the same, the pixel will not be drawn)
+3) Repeat (**0x00** to **0xFF**) represents the number of time this color should be repeated on the same graphic line <a name="components-repeat"></a>
 
 ## Compression <a name="compression"></a>
 
 ### A list of potential algorithms that could be implemented
 
-- Difference storing
+- Difference storing <a name="difference-storing"></a>
 
 	> Difference storing is currently only a concept
 
 	While creating a palette, DS algorithm can store a decimal difference (1 byte) between palette[n-1] and palette[n], thus saving **6** to **2** bytes.
 
 	This could be used to create shading, or gradients.
+
+- Pattern repeating <a name="pattern-repeating"></a>
+	
+	> Pattern repeating is currently in debugging state
+
+	While storing pixels to sprite file, pattern repeating find how many repeating pixels are placed in a row [n] -> [n+Inf], thus saving a maximum
+	of **65535** bytes
+	It's implementation is stored [here]("components-repeat")
