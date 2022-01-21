@@ -60,4 +60,4 @@
 
 	While storing pixels to sprite file, pattern repeating find how many repeating pixels are placed in a row [n] -> [n+Inf], thus saving a maximum
 	of **65535** bytes
-	It's implementation is stored [here]("components-repeat")
+	It's implementation is stored [here](#components-repeat)
