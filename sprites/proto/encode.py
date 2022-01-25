@@ -29,8 +29,8 @@ def count_neighbors(haystack: list, offset: int) -> int:
     :return: The number of identical neighbors.
     """
     count = 0
-    for i in range(offset, len(haystack)):
-        if haystack[i] == haystack[offset] and offset != i:
+    for i in range(offset + 1, len(haystack)):
+        if haystack[i] == haystack[offset]:
             count += 1
         else:
             break
@@ -101,7 +101,6 @@ def encode(image, output=None, compressed=False):
         
         skip = 0
         for i, p in enumerate(pixels):
-            print(p, skip)
             if skip != 0:
                 skip -= 1
                 continue
@@ -117,7 +116,6 @@ def encode(image, output=None, compressed=False):
     print("Output : {}".format(args.output))
     print("Size : {} -- {}".format(bytes_to_human(os.path.getsize(output)), "compressed" if compressed else "uncompressed"))
     if compressed:
-        pass
         print("Saved {} using pattern repeat.".format(bytes_to_human(neighbors_total)))
 strawberry = Image.open(IMAGE_PATH)
 strawberry = strawberry.convert("RGBA")

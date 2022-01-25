@@ -40,7 +40,6 @@ def decode(sprite_path, output):
             if compressed:
                 try:
                     repeat_count, palette_index = f.read(2)
-                    print(repeat_count, palette_index)
                     for _ in range(repeat_count + 1):
                         pixels.append(palette_index)
                 except:

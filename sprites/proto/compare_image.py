@@ -1,5 +1,4 @@
 import sys
-from tkinter import E
 from PIL import Image
 
 if len(sys.argv) != 3:
