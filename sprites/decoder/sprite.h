@@ -16,7 +16,8 @@ typedef struct	s_sprite
 }				t_sprite;
 
 void ft_decode_sprite(int fd, t_sprite *sprite);
-int ft_decode_uncompressed_sprite(int fd, t_pixel **pixels);
-int ft_decode_compressed_sprite(int fd, t_pixel **pixels);
+void ft_decode_uncompressed_sprite(int fd, t_pixel **pixels, int size);
+void ft_decode_compressed_sprite(int fd, t_pixel **pixels, int size);
 t_sprite ft_new_sprite();
+void ft_init_matrix(int height, int width, t_sprite *sprite);
 #endif

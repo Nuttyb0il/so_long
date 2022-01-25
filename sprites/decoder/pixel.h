@@ -4,7 +4,7 @@
 #include "color.h"
 typedef struct	s_pixel
 {
-    unsigned int palette_index;
+    int palette_index;
 }				t_pixel;
 
 #endif
