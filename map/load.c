@@ -55,8 +55,8 @@ void ft_buffer_map(char *path, t_map *map)
 
 void ft_get_attributes(t_map *map)
 {
-    int i;
-    int line_width;
+    unsigned int i;
+    unsigned int line_width;
 
     i = 0;
     line_width = 0;
