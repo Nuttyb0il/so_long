@@ -2,9 +2,9 @@
 
 int ft_closed_map(t_map *map)
 {
-    int line;
-    int index;
-    int line_index;
+    unsigned int line;
+    unsigned int index;
+    unsigned int line_index;
 
     line = 0;
     index = 0;
@@ -26,11 +26,12 @@ int ft_closed_map(t_map *map)
         line_index++;
         index++;
     }
+    return (1);
 }
 
 int ft_invalid_chars(t_map *map)
 {
-    int index;
+    unsigned int index;
     char c;
 
     index = 0;
@@ -42,4 +43,33 @@ int ft_invalid_chars(t_map *map)
         index++;
     }
     return (1);
+}
+
+int ft_rectangle(t_map *map)
+{
+    return (map->width != map->height);
+}
+
+int ft_minimal_requirement(t_map *map)
+{
+    int spawn_points;
+    int exit_points;
+    int collectibles;
+    unsigned int index;
+
+    spawn_points = 0;
+    exit_points = 0;
+    collectibles = 0;
+    index = 0;
+    while (index < map->size)
+    {
+        if (map->map_string[index] == 'P')
+            spawn_points++;
+        if (map->map_string[index] == 'E')
+            exit_points++;
+        if (map->map_string[index] == 'C')
+            collectibles++;
+        index++;
+    }
+    return (spawn_points == 1 && exit_points == 1 && collectibles >= 1);
 }
