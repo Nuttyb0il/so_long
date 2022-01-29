@@ -1,3 +1,6 @@
-*.sprite
+*.png
 .vscode
 a.out
+display
+display_random
+checker
