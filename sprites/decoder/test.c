@@ -2,6 +2,8 @@
 #include "mlx.h"
 #include <string.h>
 
+int ft_pseudo_random(int max);
+
 int color_to_hex(int index, t_palette palette)
 {
     if (index == 0xFF)
@@ -24,10 +26,24 @@ void ft_print_matrix(t_sprite sprite)
     }
 }
 
+void ft_key_hook(int keycode, void *window)
+{
+    if (keycode == 65307)
+        exit(0);
+}
+
 int main(int argc, char **argv)
 {
+    char possibilities[5][60] = {
+        "../../game_sprites/madeline_0.sprite",
+        "../../game_sprites/madeline_1.sprite",
+        "../../game_sprites/madeline_2.sprite",
+        "../../game_sprites/madeline_3.sprite",
+        "../../game_sprites/madeline_4.sprite"
+    };
+    char *selected_sprite = possibilities[ft_pseudo_random(4)];
     puts("Portrait C decoder.");
-    int fd = open(argv[1], O_RDONLY);
+    int fd = open(selected_sprite, O_RDONLY);
     // check if file is open
     if (fd == -1)
     {
@@ -38,7 +54,6 @@ int main(int argc, char **argv)
 
     sprite = ft_new_sprite();
     ft_decode_sprite(fd, &sprite);
-    char *filename = strdup(argv[1]);
     puts("Sprite decoding ended.\n------------");
     printf("Compressed : %d\n", sprite.compressed);
     printf("Palette size : %d\n", sprite.palette.size);
@@ -49,6 +64,7 @@ int main(int argc, char **argv)
         printf("Too big to print -> %d\n", sprite.height * sprite.width);
     else
         ft_print_matrix(sprite);
+    char *filename = strdup(selected_sprite);
     void *mlx_ptr = mlx_init();
     void *win_ptr = mlx_new_window(mlx_ptr, 300, 300, filename);
 
@@ -62,6 +78,9 @@ int main(int argc, char **argv)
                 mlx_pixel_put(mlx_ptr, win_ptr, j, i, hex);
         }
     }
+    // register esc key
+    mlx_key_hook(win_ptr, ft_key_hook, win_ptr);
+    
     // show window
     mlx_loop(mlx_ptr);
 }
