@@ -11,8 +11,10 @@ args.add_argument("-c", "--compressed", help="Compress sprite", action="store_tr
 args = args.parse_args()
 
 print(PIL.__version__)
-if "sprites/proto" not in os.getcwd():
+try:
     os.chdir("sprites/proto")
+except:
+    pass
 IMAGE_PATH = args.input
 neighbors_total = 0
 def convert_rgb_to_index(r: int, g: int, b: int, palette: list) -> int:
@@ -112,6 +114,8 @@ def encode(image, output=None, compressed=False):
                 f.write(bytes([neighbors]))
             f.write(bytes([p]))
         print()
+        f.write(bytes([0x4D, 0x49, 0x4B, 0x4F]))
+
     image.close()
     print("Output : {}".format(args.output))
     print("Size : {} -- {}".format(bytes_to_human(os.path.getsize(output)), "compressed" if compressed else "uncompressed"))
