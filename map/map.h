@@ -12,6 +12,8 @@ typedef struct t_map
     unsigned int height;
     unsigned int width;
     int valid;
+    int player_x;
+    int player_y;
 }   t_map;
 
 void ft_buffer_map(char *path, t_map *map);
