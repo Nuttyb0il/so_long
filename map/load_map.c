@@ -74,6 +74,11 @@ void ft_get_attributes(t_map *map)
         }
         else
             line_width++;
+        if (map->map_string[i] == 'P')
+        {
+            map->player_x = i % map->width;
+            map->player_y = i / map->width;
+        }
         i++;
     }
     map->height++;
