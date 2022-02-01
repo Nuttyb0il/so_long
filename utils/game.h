@@ -9,6 +9,8 @@ typedef struct s_game
     t_sprite *sprites;
     t_map *map;
     int sprite_count;
+    int window_width;
+    int window_height;
 } t_game;
 
 t_game ft_load_game(char **sprites_path, char **sprites_name, char *map_path, int sprite_count);
