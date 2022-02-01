@@ -1,19 +1,8 @@
 #include "sprite.h"
 #include "mlx.h"
+#include "../../so_long.h"
 #include <string.h>
 
-int ft_pseudo_random(int max);
-
-int color_to_hex(int index, t_palette palette)
-{
-    if (index == 0xFF)
-        return (-1);
-    int r = palette.colors[index].r;
-    int g = palette.colors[index].g;
-    int b = palette.colors[index].b;
-
-    return ((r << 16) | (g << 8) | b);
-}
 
 void ft_print_matrix(t_sprite sprite)
 {
@@ -21,66 +10,62 @@ void ft_print_matrix(t_sprite sprite)
     {
         printf("%d -> %2d | ", i, i * sprite.width);
         for (int j = 0; j < sprite.width; j++)
-            printf("%2d ", sprite.pixels[i * sprite.width + j].palette_index);
+            printf("%2d ", sprite.pixels[i * sprite.width + j]);
         puts("");
     }
 }
 
-void ft_key_hook(int keycode, void *window)
+int ft_keyhook(int keycode, t_game *game)
 {
-    if (keycode == 65307)
+    if (keycode == 96)
+    {
+        printf("Destroying\n");
+        // mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+        ft_free_game(game);
         exit(0);
+    }
+    return (0);
 }
 
-int main(int argc, char **argv)
+int main(void)
 {
-    char possibilities[5][60] = {
-        "../../game_sprites/madeline_0.sprite",
-        "../../game_sprites/madeline_1.sprite",
-        "../../game_sprites/madeline_2.sprite",
-        "../../game_sprites/madeline_3.sprite",
-        "../../game_sprites/madeline_4.sprite"
-    };
-    char *selected_sprite = possibilities[ft_pseudo_random(4)];
-    puts("Portrait C decoder.");
-    int fd = open(selected_sprite, O_RDONLY);
-    // check if file is open
-    if (fd == -1)
-    {
-        printf("Error: file not found\n");
-        return (0);
-    }
-    t_sprite sprite;
+    t_game game;
 
-    sprite = ft_new_sprite();
-    ft_decode_sprite(fd, &sprite);
-    puts("Sprite decoding ended.\n------------");
-    printf("Compressed : %d\n", sprite.compressed);
-    printf("Palette size : %d\n", sprite.palette.size);
-    printf("Width: %d\n", sprite.width);
-    printf("Height: %d\n", sprite.height);
-    printf("Matrix:\n");
-    if (sprite.height * sprite.width > 1000)
-        printf("Too big to print -> %d\n", sprite.height * sprite.width);
-    else
-        ft_print_matrix(sprite);
-    char *filename = strdup(selected_sprite);
-    void *mlx_ptr = mlx_init();
-    void *win_ptr = mlx_new_window(mlx_ptr, 300, 300, filename);
-
-    for (int i = 0; i < sprite.height; i++)
-    {
-        for (int j = 0; j < sprite.width; j++)
-        {
-            int color = sprite.pixels[i * sprite.width + j].palette_index;
-            int hex = color_to_hex(color, sprite.palette);
-            if (hex > 0)
-                mlx_pixel_put(mlx_ptr, win_ptr, j, i, hex);
-        }
-    }
-    // register esc key
-    mlx_key_hook(win_ptr, ft_key_hook, win_ptr);
+    char **sprites_path;
+    char **sprites_name;
+    sprites_path = malloc(sizeof(char *) * 3);
+    sprites_name = malloc(sizeof(char *) * 3);
+    sprites_path[0] = ft_strdup("../../game_sprites/ice.cnv");
+    sprites_name[0] = ft_strdup("ice");
+    sprites_path[1] = ft_strdup("../../game_sprites/stone.cnv");
+    sprites_name[1] = ft_strdup("stone");
+    sprites_path[2] = ft_strdup("../../game_sprites/berry.cnv");
+    sprites_name[2] = ft_strdup("berry");
     
-    // show window
-    mlx_loop(mlx_ptr);
+    // sprites_path[2] = ft_strdup("../../game_sprites/madeline.cnv");
+    // sprites_name[2] = ft_strdup("madeline");
+
+    game = ft_load_game(sprites_path, sprites_name, "../../map/test_smaller.ber", 3);
+    if (!game.map->valid)
+    {
+        printf("Map is invalid\n");
+        return (0); // TODO : Use ft_error
+    }
+    // init window
+    game.mlx_ptr = mlx_init();
+    game.win_ptr = mlx_new_window(game.mlx_ptr, game.map->width * 64, game.map->height * 64, "so_long");
+    
+    // ft_render_sprite(&game, "wall", 0, 0);
+    for (size_t i = 0; i < game.map->size; i++)
+    {
+        printf("%c", game.map->map_string[i]);
+    }
+    puts("");
+    ft_render_map(&game);
+
+    // // Detect ESC key
+    mlx_key_hook(game.win_ptr, ft_keyhook, &game);
+    mlx_loop(game.mlx_ptr);
+    ft_free_game(&game);
+    return (0);
 }

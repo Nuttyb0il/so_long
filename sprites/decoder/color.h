@@ -1,7 +1,6 @@
 #ifndef PALETTE_H
 # define PALETTE_H
-# include <unistd.h>
-# include <stdlib.h>
+
 typedef struct	s_color
 {
     unsigned char	r;
