@@ -22,13 +22,15 @@ t_game ft_load_game(char **sprites_path, char **sprites_name, char *map_path, in
     while (i < sprite_count)
     {
         ft_decode_sprite(sprites_name[i], sprites_path[i], &game.sprites[i]);
+        if (ft_strncmp(sprites_name[i], "mad", 3) == 0)
+            ft_random_hair(&game.sprites[i]);
         free(sprites_path[i]);
         free(sprites_name[i]);
         i++;
     }
     free(sprites_path);
     free(sprites_name);
-    ft_buffer_map(map_path, game.map); // XXX : this function has mem issues
+    ft_buffer_map(map_path, game.map);
     return (game);
 }
 
