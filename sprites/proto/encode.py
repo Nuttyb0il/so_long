@@ -111,6 +111,9 @@ def encode(image, output=None, compressed=False):
                 neighbors = count_neighbors(pixels, i)
                 neighbors_total += neighbors - 1
                 skip = neighbors
+                if skip > 0xFF:
+                    skip = 0xFE
+                    neighbors = 0xFE
                 f.write(bytes([neighbors]))
             f.write(bytes([p]))
         print()
