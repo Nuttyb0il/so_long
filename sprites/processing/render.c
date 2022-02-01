@@ -63,10 +63,38 @@ char *ft_render_tile(char c)
     else if (c == 'C')
         return "berry";
     else if (c == 'P')
-        return "ice";
+        return "madeline";
     else if (c == 'E')
         return "ice";
-    return "";
+    return "ice";
+}
+
+void ft_place_ice(t_game *game)
+{
+    int x;
+    int y;
+    int i;
+    char tile;
+
+    x = 0;
+    y = 0;
+    i = 0;
+    
+    while (i < game->map->size)
+    {
+        tile = game->map->map_string[i];
+        if (tile == '\n')
+        {
+            y++;
+            x = 0;
+        }
+        else
+        {
+            ft_render_sprite(game, "ice", x * TILE_SIZE, y * TILE_SIZE);
+            x++;
+        }
+        i++;
+    }
 }
 
 void ft_render_map(t_game *game)
@@ -81,6 +109,7 @@ void ft_render_map(t_game *game)
     i = 0;
     if (!game->win_ptr || !game->mlx_ptr)
         return ;
+    ft_place_ice(game);
     // read every tile in the map, skip \n
     while (i < game->map->size)
     {
@@ -92,7 +121,6 @@ void ft_render_map(t_game *game)
         }
         else
         {
-            ft_render_sprite(game, "ice", x * TILE_SIZE, y * TILE_SIZE);
             if (tile != '0')
                 ft_render_sprite(game, ft_render_tile(tile), x * TILE_SIZE, y * TILE_SIZE);
             x++;
