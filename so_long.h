@@ -23,6 +23,7 @@
 // misc utils
 # include "utils/misc.h"
 # include "utils/game.h"
+# include "utils/geometry.h"
 void ft_strcat(char *src, char *dest);
 void ft_strcat(char *src, char *dest);
 char	*ft_strdup(char *src);
