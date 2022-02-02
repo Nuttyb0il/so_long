@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_string.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/02 17:24:36 by jallerha          #+#    #+#             */
+/*   Updated: 2022/02/02 17:25:13 by jallerha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 
 int	ft_strlen(char *s)
@@ -10,20 +22,20 @@ int	ft_strlen(char *s)
 	return (i);
 }
 
-void ft_strcat(char *src, char *dest)
+void	ft_strcat(char *src, char *dest)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = 0;
-    j = 0;
-    while (src[i])
-    {
-        dest[j] = src[i];
-        i++;
-        j++;
-    }
-    dest[j] = '\0';
+	i = 0;
+	j = 0;
+	while (src[i])
+	{
+		dest[j] = src[i];
+		i++;
+		j++;
+	}
+	dest[j] = '\0';
 }
 
 char	*ft_strdup(const char *s)
@@ -47,24 +59,24 @@ char	*ft_strdup(const char *s)
 	return (output);
 }
 
-int ft_strcmp(char *s1, char *s2)
+int	ft_strcmp(char *s1, char *s2)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (s1 && s2 && s1[i] == s2[i])
-        i++;
-    return (s1[i] - s2[i]);
+	i = 0;
+	while (s1 && s2 && s1[i] == s2[i])
+		i++;
+	return (s1[i] - s2[i]);
 }
 
-int    ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-    size_t    i;
+	size_t	i;
 
-    i = 0;
-    if (n == 0)
-        return (0);
-    while (s1[i] == s2[i] && s1[i] && s2[i] && i < n - 1)
-        i++;
-    return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	i = 0;
+	if (n == 0)
+		return (0);
+	while (s1[i] == s2[i] && s1[i] && s2[i] && i < n - 1)
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

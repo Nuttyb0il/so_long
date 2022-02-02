@@ -1,5 +1,17 @@
-#ifndef MISC_H
-#define MISC_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   misc.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/02 17:22:27 by jallerha          #+#    #+#             */
+/*   Updated: 2022/02/02 17:22:45 by jallerha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-unsigned int ft_pseudo_random(int min, int max);
+#ifndef MISC_H
+# define MISC_H
+
+unsigned int	ft_pseudo_random(int min, int max);
 #endif
