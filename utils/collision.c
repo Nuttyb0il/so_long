@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movement.c                                         :+:      :+:    :+:   */
+/*   collision.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/02 17:20:46 by jallerha          #+#    #+#             */
-/*   Updated: 2022/02/10 16:08:20 by jallerha         ###   ########.fr       */
+/*   Created: 2022/02/09 11:58:46 by jallerha          #+#    #+#             */
+/*   Updated: 2022/02/10 16:14:02 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	ft_offset_position(int *x, int *y, int keycode)
+int	ft_allowed_movement(t_game *game, int keycode)
 {
+	t_point point;
+	
+	point = game->map->player_pos;
 	if (keycode == DOWN)
-		*y -= PIXEL_SKIPPING;
+		point.y -= PIXEL_SKIPPING;
 	else if (keycode == UP)
-		*y += PIXEL_SKIPPING;
+		point.y += PIXEL_SKIPPING;
 	else if (keycode == LEFT)
-		*x -= PIXEL_SKIPPING;
+		point.x -= PIXEL_SKIPPING;
 	else if (keycode == RIGHT)
-		*x += PIXEL_SKIPPING;
-}
-
-void	ft_move_player(t_game *game, int keycode)
-{
-	if (ft_allowed_movement(game, keycode))
-	{
-		ft_refresh_tiles(game, game->map->player_pos);
-		ft_offset_position(&game->map->player_pos.x,
-			&game->map->player_pos.y, keycode);
-		ft_render_sprite(game, "madeline", game->map->player_pos.x,
-			game->map->player_pos.y);
-	}
+		point.x += PIXEL_SKIPPING;
+	char c = ft_get_tile(game, point);
+	printf("[%s:%d] : Tile at %d, %d is a %c\n", __FILE__, __LINE__, point.x / TILE_SIZE, point.y / TILE_SIZE, c);
+	return (ft_get_tile(game, point) != '1');
 }

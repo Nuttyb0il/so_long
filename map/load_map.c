@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 13:02:12 by jallerha          #+#    #+#             */
-/*   Updated: 2022/02/02 13:05:47 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/02/10 13:51:35 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	ft_buffer_map(char *path, t_map *map)
 	int	fd;
 
 	fd = open(path, O_RDONLY);
+	map->valid = 0;
 	if (fd == -1)
 	{
 		map->size = 0;
@@ -48,20 +49,15 @@ void	ft_buffer_map(char *path, t_map *map)
 	map->size = ft_get_size(path);
 	map->map_string = malloc(sizeof(char) * map->size);
 	if (read(fd, map->map_string, map->size) == -1)
-	{
-		map->valid = 0;
 		return ;
-	}
 	close(fd);
-	map->valid = 1;
 	map->width = 0;
 	map->height = 0;
 	if (map->size <= 16)
-	{
-		map->valid = 0;
 		return ;
-	}
+	map->valid = 1;
 	ft_get_attributes(map);
+	ft_place_player(map);
 }
 
 void	ft_get_attributes(t_map *map)
@@ -84,11 +80,27 @@ void	ft_get_attributes(t_map *map)
 		}
 		else
 			line_width++;
-		if (map->map_string[i] == 'P')
+		i++;
+	}
+}
+
+void	ft_place_player(t_map *map)
+{
+	unsigned int	i;
+
+	i = 0;
+	map->player_pos.x = -TILE_SIZE;
+	map->player_pos.y = 0;
+	while (i < map->size && map->valid == 1)
+	{
+		if (map->map_string[i] == '\n')
 		{
-			map->player_pos.x = (i - 1) % map->width * TILE_SIZE;
-			map->player_pos.y = (i - 1) / map->width * TILE_SIZE;
+			map->player_pos.x = -TILE_SIZE;
+			map->player_pos.y += TILE_SIZE;
 		}
+		else if (map->map_string[i] == 'P')
+			break ;
+		map->player_pos.x += TILE_SIZE;
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 13:00:19 by jallerha          #+#    #+#             */
-/*   Updated: 2022/02/02 13:01:26 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/02/10 12:27:20 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct t_map
 void	ft_buffer_map(char *path, t_map *map);
 int		ft_get_size(char *path);
 void	ft_get_attributes(t_map *map);
-
+void	ft_place_player(t_map *map);
 // map/integrity.c
 int		ft_invalid_chars(t_map *map);
 int		ft_closed_map(t_map *map);

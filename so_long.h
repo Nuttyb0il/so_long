@@ -2,6 +2,12 @@
 #define SO_LONG_H
 
 # define TILE_SIZE 64
+# define PIXEL_SKIPPING 8
+
+# define DOWN 126
+# define UP 125
+# define RIGHT 124
+# define LEFT 123
 
 // libc utils
 # include <sys/types.h>
@@ -51,4 +57,10 @@ void ft_free_sprites(t_game *game);
 // processing/status_bar.c
 void ft_render_status(t_game *game);
 
+// utils/refresh.c
+char ft_get_tile(t_game *game, t_point point);
+void ft_refresh_tiles(t_game *game, t_point point);
+
+// utils/collision.c
+int	ft_allowed_movement(t_game *game, int keycode);
 #endif
