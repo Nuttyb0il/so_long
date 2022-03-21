@@ -97,7 +97,7 @@ class TestSmallValidMaps(unittest.TestCase):
 		"""
 		Test small valid maps
 		"""
-		for _ in range(20):
+		for _ in range(500):
 			path = save_map(generate_map(3, 3))
 			try:
 				subprocess.check_output(["../so_long", path],
@@ -110,7 +110,7 @@ class TestSmallValidMaps(unittest.TestCase):
 		"""
 		Test small valid maps
 		"""
-		for _ in range(20):
+		for _ in range(500):
 			path = save_map(generate_map(5, 5))
 			try:
 				subprocess.check_output(["../so_long", path],
@@ -123,7 +123,7 @@ class TestSmallValidMaps(unittest.TestCase):
 		"""
 		Test small valid maps
 		"""
-		for _ in range(20):
+		for _ in range(500):
 			path = save_map(generate_map(10, 10))
 			try:
 				subprocess.check_output(["../so_long", path],
@@ -138,7 +138,7 @@ class TestSmallInvalidMaps(unittest.TestCase):
 		Test small invalid maps
 		Batch 0 : Tests with invalid walls
 		"""
-		for _ in range(20):
+		for _ in range(500):
 			path = save_map(generate_map(3, 3, valid_walls=False))
 			try:
 				subprocess.check_output(["../so_long", path],
@@ -146,13 +146,14 @@ class TestSmallInvalidMaps(unittest.TestCase):
 				os.remove(path)
 				self.fail("Map was parsed as valid, but it should be invalid")
 			except subprocess.CalledProcessError:
+				pass
 				os.remove(path)
 	def test_3x3_invalid_maps_1(self):
 		"""
 		Test small invalid maps
 		Batch 1 : Tests with invalid exit points
 		"""
-		for _ in range(20):
+		for _ in range(500):
 			path = save_map(generate_map(3, 3, exits=0))
 			try:
 				subprocess.check_output(["../so_long", path],
@@ -166,7 +167,7 @@ class TestSmallInvalidMaps(unittest.TestCase):
 		Test small invalid maps
 		Batch 2 : Tests with invalid collectibles
 		"""
-		for _ in range(20):
+		for _ in range(500):
 			path = save_map(generate_map(3, 3, collectibles=0))
 			try:
 				subprocess.check_output(["../so_long", path],
@@ -180,7 +181,7 @@ class TestSmallInvalidMaps(unittest.TestCase):
 		Test small invalid maps
 		Batch 3 : Tests with spawn points
 		"""
-		for _ in range(20):
+		for _ in range(500):
 			path = save_map(generate_map(3, 3, spawns=0))
 			try:
 				subprocess.check_output(["../so_long", path],
@@ -194,7 +195,7 @@ class TestSmallInvalidMaps(unittest.TestCase):
 		Test small invalid maps
 		Batch 0 : Tests with invalid walls
 		"""
-		for _ in range(20):
+		for _ in range(500):
 			path = save_map(generate_map(10, 10, valid_walls=False))
 			try:
 				subprocess.check_output(["../so_long", path],
@@ -203,12 +204,13 @@ class TestSmallInvalidMaps(unittest.TestCase):
 				self.fail("Map was parsed as valid, but it should be invalid")
 			except subprocess.CalledProcessError:
 				os.remove(path)
+				pass
 	def test_10x10_invalid_maps_1(self):
 		"""
 		Test small invalid maps
 		Batch 1 : Tests with invalid exit points
 		"""
-		for _ in range(20):
+		for _ in range(500):
 			path = save_map(generate_map(10, 10, exits=0))
 			try:
 				subprocess.check_output(["../so_long", path],
@@ -222,7 +224,7 @@ class TestSmallInvalidMaps(unittest.TestCase):
 		Test small invalid maps
 		Batch 2 : Tests with invalid collectibles
 		"""
-		for _ in range(20):
+		for _ in range(500):
 			path = save_map(generate_map(10, 10, collectibles=0))
 			try:
 				subprocess.check_output(["../so_long", path],
@@ -236,7 +238,7 @@ class TestSmallInvalidMaps(unittest.TestCase):
 		Test small invalid maps
 		Batch 3 : Tests with spawn points
 		"""
-		for _ in range(20):
+		for _ in range(500):
 			path = save_map(generate_map(10, 10, spawns=0))
 			try:
 				subprocess.check_output(["../so_long", path],
@@ -251,7 +253,7 @@ class TestBigValidMaps(unittest.TestCase):
 		"""
 		Test big valid maps
 		"""
-		for _ in range(20):
+		for _ in range(500):
 			path = save_map(generate_map(30, 30))
 			try:
 				subprocess.check_output(["../so_long", path],
@@ -264,7 +266,7 @@ class TestBigValidMaps(unittest.TestCase):
 		"""
 		Test big valid maps
 		"""
-		for _ in range(20):
+		for _ in range(500):
 			path = save_map(generate_map(20, 50))
 			try:
 				subprocess.check_output(["../so_long", path],
@@ -277,7 +279,7 @@ class TestBigValidMaps(unittest.TestCase):
 		"""
 		Test big valid maps
 		"""
-		for _ in range(20):
+		for _ in range(500):
 			path = save_map(generate_map(random.randint(10, 35), random.randint(10, 35)))
 			try:
 				subprocess.check_output(["../so_long", path],
@@ -293,7 +295,7 @@ class TestBigInvalidMaps(unittest.TestCase):
 		Test small invalid maps
 		Batch 0 : Tests with invalid walls
 		"""
-		for _ in range(20):
+		for _ in range(500):
 			path = save_map(generate_map(30, 30, valid_walls=False))
 			try:
 				subprocess.check_output(["../so_long", path],
@@ -307,7 +309,7 @@ class TestBigInvalidMaps(unittest.TestCase):
 		Test small invalid maps
 		Batch 1 : Tests with invalid exit points
 		"""
-		for _ in range(20):
+		for _ in range(500):
 			path = save_map(generate_map(30, 30, exits=0))
 			try:
 				subprocess.check_output(["../so_long", path],
@@ -321,7 +323,7 @@ class TestBigInvalidMaps(unittest.TestCase):
 		Test small invalid maps
 		Batch 2 : Tests with invalid collectibles
 		"""
-		for _ in range(20):
+		for _ in range(500):
 			path = save_map(generate_map(30, 30, collectibles=0))
 			try:
 				subprocess.check_output(["../so_long", path],
@@ -335,7 +337,7 @@ class TestBigInvalidMaps(unittest.TestCase):
 		Test small invalid maps
 		Batch 3 : Tests with spawn points
 		"""
-		for _ in range(20):
+		for _ in range(500):
 			path = save_map(generate_map(30, 30, spawns=0))
 			try:
 				subprocess.check_output(["../so_long", path],
@@ -349,7 +351,7 @@ class TestBigInvalidMaps(unittest.TestCase):
 		Test small invalid maps
 		Batch 0 : Tests with invalid walls
 		"""
-		for _ in range(20):
+		for _ in range(500):
 			path = save_map(generate_map(20, 50, valid_walls=False))
 			try:
 				subprocess.check_output(["../so_long", path],
@@ -363,7 +365,7 @@ class TestBigInvalidMaps(unittest.TestCase):
 		Test small invalid maps
 		Batch 1 : Tests with invalid exit points
 		"""
-		for _ in range(20):
+		for _ in range(500):
 			path = save_map(generate_map(20, 50, exits=0))
 			try:
 				subprocess.check_output(["../so_long", path],
@@ -377,7 +379,7 @@ class TestBigInvalidMaps(unittest.TestCase):
 		Test small invalid maps
 		Batch 2 : Tests with invalid collectibles
 		"""
-		for _ in range(20):
+		for _ in range(500):
 			path = save_map(generate_map(20, 50, collectibles=0))
 			try:
 				subprocess.check_output(["../so_long", path],
@@ -391,7 +393,7 @@ class TestBigInvalidMaps(unittest.TestCase):
 		Test small invalid maps
 		Batch 3 : Tests with spawn points
 		"""
-		for _ in range(20):
+		for _ in range(500):
 			path = save_map(generate_map(20, 50, spawns=0))
 			try:
 				subprocess.check_output(["../so_long", path],
