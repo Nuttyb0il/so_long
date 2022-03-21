@@ -5,102 +5,98 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/02 13:02:12 by jallerha          #+#    #+#             */
-/*   Updated: 2022/02/10 13:51:35 by jallerha         ###   ########.fr       */
+/*   Created: 2022/03/21 11:41:38 by jallerha          #+#    #+#             */
+/*   Updated: 2022/03/21 15:25:52 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
-#include "../so_long.h"
+#include "../includes/so_long.h"
+#include "../libft/includes/printf.h"
+#include "../libft/includes/colors.h"
+#include "../libft/includes/constants.h"
+#include "../libft/includes/string.h"
+#include "../libft/includes/memory.h"
+#include "../libft/includes/file.h"
 
-int	ft_get_size(char *path)
+int	ft_open_file(char *path)
 {
 	int		fd;
-	int		size;
-	char	buffer[1024];
-	int		read_bytes;
+	char	*copy;
 
-	size = 0;
-	fd = open(path, O_RDONLY);
-	if (fd == -1)
-		return (0);
-	while (1)
+	copy = ft_strdup(path);
+	ft_strlwr(copy);
+	if (ft_endswith(copy, ".ber"))
+		fd = open(path, O_RDONLY);
+	else
 	{
-		read_bytes = read(fd, buffer, 1024);
-		if (read_bytes <= 0)
-			break ;
-		size += read_bytes;
+		ft_fprintf(STDERR,
+			RED2"Error: "INDIANRED1"'%s'"ORANGE2" is not a map file\n"RESET, path
+			);
+		clean_exit(ERROR);
+	}
+	ft_free(&copy);
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+	{
+		ft_fprintf(STDERR,
+			RED2"Error: "ORANGE2"failed to open : "INDIANRED1"'%s'\n"RESET, path
+			);
+		clean_exit(ERROR);
 	}
 	close(fd);
-	return (size);
+	return (TRUE);
 }
 
-void	ft_buffer_map(char *path, t_map *map)
+int	ft_markdown_code(t_map *map)
 {
-	int	fd;
-
-	fd = open(path, O_RDONLY);
-	map->valid = 0;
-	if (fd == -1)
-	{
-		map->size = 0;
-		return ;
-	}
-	map->size = ft_get_size(path);
-	map->map_string = malloc(sizeof(char) * map->size);
-	if (read(fd, map->map_string, map->size) == -1)
-		return ;
-	close(fd);
-	map->width = 0;
-	map->height = 0;
-	if (map->size <= 16)
-		return ;
-	map->valid = 1;
-	ft_get_attributes(map);
-	ft_place_player(map);
+	if (map->collectibles <= 0)
+		return (INVALID_COLLECTIBLES);
+	if (map->spawns <= 0)
+		return (INVALID_SPAWNS);
+	if (map->exits <= 0)
+		return (INVALID_EXITS);
+	if (!ft_valid_charset(map->map))
+		return (INVALID_MAP_CHARACTERS);
+	if (!ft_valid_line_length(map->map, map->width))
+		return (INVALID_LINE_LENGTH);
+	if (!ft_map_closed(map->map, map->width))
+		return (MAP_NOT_CLOSED);
+	return (0);
 }
 
-void	ft_get_attributes(t_map *map)
+int	ft_sanity_check(t_map *map)
 {
-	unsigned int	i;
-	unsigned int	line_width;
+	int		i;
+	int		invalid_elements;
 
 	i = 0;
-	line_width = 0;
-	while (i < map->size && map->valid == 1)
-	{
-		if (map->map_string[i] == '\n')
-		{
-			map->height++;
-			if (line_width != map->width && map->width != 0)
-				map->valid = 0;
-			else
-				map->width = line_width;
-			line_width = 0;
-		}
-		else
-			line_width++;
+	map->height = ft_count_words(map->map, "\n");
+	while (map->map[i] && map->map[i] != '\n')
 		i++;
-	}
+	map->width = i;
+	map->collectibles = ft_count_words(map->map, "C");
+	map->spawns = ft_count_words(map->map, "P");
+	map->exits = ft_count_words(map->map, "E");
+	invalid_elements = ft_markdown_code(map);
+	if (invalid_elements != 0)
+		ft_print_markdown(invalid_elements, map);
+	return (TRUE);
 }
 
-void	ft_place_player(t_map *map)
+t_map	ft_load_map(char *path)
 {
-	unsigned int	i;
+	t_map	map;
 
-	i = 0;
-	map->player_pos.x = -TILE_SIZE;
-	map->player_pos.y = 0;
-	while (i < map->size && map->valid == 1)
+	if (!ft_is_ber(path))
 	{
-		if (map->map_string[i] == '\n')
-		{
-			map->player_pos.x = -TILE_SIZE;
-			map->player_pos.y += TILE_SIZE;
-		}
-		else if (map->map_string[i] == 'P')
-			break ;
-		map->player_pos.x += TILE_SIZE;
-		i++;
+		ft_fprintf(STDERR,
+			RED2"Error: "ORANGE2"%s"RED2" is not a map file\n"RESET, path
+			);
+		clean_exit(1);
 	}
+	ft_open_file(path);
+	map.map = ft_read_file(path);
+	map.length = ft_strlen(map.map);
+	map.sanity = ft_sanity_check(&map);
+	return (map);
 }
