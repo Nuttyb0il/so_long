@@ -6,14 +6,14 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:25:17 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/21 20:51:57 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/22 11:34:41 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/file.h"
 #include "../libft/includes/string.h"
 #include "../includes/so_long.h"
-#include <stdio.h>
+
 int	ft_is_ber(char *path)
 {
 	char	buffer[2];

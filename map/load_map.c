@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 11:41:38 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/21 15:25:52 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/22 12:11:45 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ int	ft_markdown_code(t_map *map)
 		return (INVALID_EXITS);
 	if (!ft_valid_charset(map->map))
 		return (INVALID_MAP_CHARACTERS);
-	if (!ft_valid_line_length(map->map, map->width))
+	if (!ft_valid_line_length(map->lines, map->width))
 		return (INVALID_LINE_LENGTH);
-	if (!ft_map_closed(map->map, map->width))
+	if (!ft_map_closed(map->lines))
 		return (MAP_NOT_CLOSED);
 	return (0);
 }
@@ -70,7 +70,7 @@ int	ft_sanity_check(t_map *map)
 	int		invalid_elements;
 
 	i = 0;
-	map->height = ft_count_words(map->map, "\n");
+	map->height = ft_chain_count(map->lines);
 	while (map->map[i] && map->map[i] != '\n')
 		i++;
 	map->width = i;
@@ -96,6 +96,7 @@ t_map	ft_load_map(char *path)
 	}
 	ft_open_file(path);
 	map.map = ft_read_file(path);
+	map.lines = ft_split(map.map, "\n");
 	map.length = ft_strlen(map.map);
 	map.sanity = ft_sanity_check(&map);
 	return (map);

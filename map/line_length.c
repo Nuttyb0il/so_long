@@ -6,28 +6,24 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 12:33:28 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/21 14:13:51 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/22 12:11:56 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/bool.h"
+#include "../libft/includes/lists.h"
+#include "../libft/includes/string.h"
 
-int	ft_valid_line_length(char *s, int expected)
+int	ft_valid_line_length(t_chain_lst *lines, int expected)
 {
-	int	i;
-	int	line_length;
-
-	i = 0;
-	line_length = 0;
-	while (s[i])
+	t_chain_lst	*tmp;
+	
+	tmp = lines;
+	while (tmp)
 	{
-		if (s[i] == '\n' && line_length != expected)
+		if (ft_strlen(tmp->content) != expected)
 			return (FALSE);
-		else if (s[i] == '\n')
-			line_length = 0;
-		else
-			line_length++;
-		i++;
+		tmp = tmp->next;
 	}
 	return (TRUE);
 }
