@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 11:41:38 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/22 12:11:45 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/23 19:41:26 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,28 @@
 #include "../libft/includes/string.h"
 #include "../libft/includes/memory.h"
 #include "../libft/includes/file.h"
+
+char	*ft_flatten_map(char *s)
+{
+	char	*flattened;
+	int		i;
+	int		j;
+	int		new_size;
+
+	i = 0;
+	j = 0;
+	new_size = ft_strlen(s) - ft_count_words(s, "\n") + 1;
+	if (!ft_malloc(&flattened, sizeof(char), new_size))
+		clean_exit(1);
+	while (s[i])
+	{
+		if (s[i] != '\n')
+			flattened[j++] = s[i];
+		i++;
+	}
+	flattened[j] = '\0';
+	return (flattened);
+}
 
 int	ft_open_file(char *path)
 {
@@ -99,5 +121,6 @@ t_map	ft_load_map(char *path)
 	map.lines = ft_split(map.map, "\n");
 	map.length = ft_strlen(map.map);
 	map.sanity = ft_sanity_check(&map);
+	map.flat = ft_flatten_map(map.map);
 	return (map);
 }
