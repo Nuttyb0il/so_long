@@ -11,3 +11,4 @@ libmlx.a
 .gitignore
 *.py
 test_display
+assets/crc32/crc32
