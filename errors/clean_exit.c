@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 12:08:43 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/23 13:40:21 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/27 16:34:39 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,5 @@ void	clean_exit_mlx(int code, t_game *game)
 void	clean_exit(int code)
 {
 	ft_full_free();
-	// ft_printf(INDIANRED1"\nLeaks :\n");
-	// system("leaks -q so_long");
-	// ft_printf(RESET"\r");
 	exit(code);
 }

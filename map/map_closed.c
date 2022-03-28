@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 12:36:34 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/22 12:40:41 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/27 16:25:16 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_map_closed(t_chain_lst *lines)
 	while (tmp)
 	{
 		if (!ft_valid(i, line_count, tmp->content, lines)
-			|| ft_strlen(tmp->content) <= 1 )
+			|| ft_strlen(tmp->content) <= 1)
 			return (FALSE);
 		tmp = tmp->next;
 		i++;

@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 12:33:28 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/22 12:11:56 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/27 16:32:25 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 int	ft_valid_line_length(t_chain_lst *lines, int expected)
 {
 	t_chain_lst	*tmp;
-	
+
 	tmp = lines;
 	while (tmp)
 	{
