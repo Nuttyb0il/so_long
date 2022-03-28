@@ -44,6 +44,7 @@ SRCS =  ft_printf/ft_printf.c \
 		conversions/ft_tolower.c \
 		conversions/ft_atol.c \
 		conversions/ft_atoi.c \
+		conversions/ft_atoui.c \
 		sort/ascending_comparators.c \
 		sort/descending_comparators.c \
 		chartype/ft_isprint.c \
