@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 17:15:39 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/23 20:17:06 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/27 16:38:29 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_refresh_exits(t_game *game)
 	while (game->map_data.map[i])
 	{
 		if (game->map_data.map[i] == 'E')
-			ft_render_sprite_by_id(game, 0, x * 64, y * 64);
+			ft_change_berries(game);
 		else if (game->map_data.map[i] == '\n')
 		{
 			x = -1;
@@ -44,6 +44,18 @@ char	ft_get_tile_at(t_game *game, int x, int y)
 	return (game->map_data.flat[y * game->map_data.width + x]);
 }
 
+void	ft_compute_move(int direction, int *x, int *y)
+{
+	if (direction == UP)
+		(*y)--;
+	else if (direction == DOWN)
+		(*y)++;
+	else if (direction == LEFT)
+		(*x)--;
+	else if (direction == RIGHT)
+		(*x)++;
+}
+
 int	ft_legal_move(int direction, t_game *game)
 {
 	char	tile;
@@ -52,19 +64,13 @@ int	ft_legal_move(int direction, t_game *game)
 
 	x = game->x / 64;
 	y = game->y / 64;
-	if (direction == UP)
-		y--;
-	else if (direction == DOWN)
-		y++;
-	else if (direction == LEFT)
-		x--;
-	else if (direction == RIGHT)
-		x++;
+	ft_compute_move(direction, &x, &y);
 	tile = ft_get_tile_at(game, x, y);
 	if (tile == 'C')
 	{
 		game->map_data.collectibles--;
 		game->map_data.flat[y * game->map_data.width + x] = '0';
+		ft_stop_animation(game, x * 64, y * 64);
 		if (game->map_data.collectibles == 0)
 			ft_refresh_exits(game);
 	}
