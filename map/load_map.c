@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 11:41:38 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/23 19:41:26 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/27 01:22:24 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,9 @@ t_map	ft_load_map(char *path)
 	}
 	ft_open_file(path);
 	map.map = ft_read_file(path);
-	map.lines = ft_split(map.map, "\n");
 	map.length = ft_strlen(map.map);
+	ft_random_spawn(&map);
+	map.lines = ft_split(map.map, "\n");
 	map.sanity = ft_sanity_check(&map);
 	map.flat = ft_flatten_map(map.map);
 	return (map);
