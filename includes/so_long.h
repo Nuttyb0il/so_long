@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 11:39:53 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/23 19:41:26 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/27 17:04:15 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,33 @@
 # define ESC 65307
 
 // Other constants
-# define SPRITE_COUNT 21
+# define SPRITE_COUNT 33
+# define ANIMATION_DELAY 1700
+
+// Object animation
+# define BERRY_ANIMATION_ID 255
+# define SEED_ANIMATION_ID 254
+
+typedef struct s_animation
+{
+	int			clock;
+	int			frame;
+	int			x;
+	int			y;
+	int			base_offset;
+	int			frame_count;
+	int			baf_mode;
+	int			baf_direction;
+	int			obj_type;
+	int			stop;
+}	t_animation;
 
 typedef struct s_map
 {
 	char		*map;
 	char		*flat;
 	char		*path;
-	t_chain_lst *lines;
+	t_chain_lst	*lines;
 	int			length;
 	int			height;
 	int			width;
@@ -62,7 +81,7 @@ typedef struct s_sprite
 	void				*image;
 }	t_sprite;
 
-typedef struct	s_game
+typedef struct s_game
 {
 	t_map			map_data;
 	t_sprite		*sprites;
@@ -76,24 +95,61 @@ typedef struct	s_game
 	int				window_width;
 	int				x;
 	int				y;
+	int				direction;
+	int				animated_objects;
+	int				anim_inits;
 	long long int	moves;
 	long long int	game_clock;
+	t_animation		*animations;
 }	t_game;
 
+typedef struct s_table
+{
+	char			*xpm_path;
+	unsigned int	crc32;
+}	t_table;
 
-t_map			ft_load_map(char *path);
-void			clean_exit(int code);
-int				ft_valid_line_length(t_chain_lst *lines, int expected);
-int				ft_map_closed(t_chain_lst *lines);
-int				ft_valid_charset(char *s);
-void			ft_print_markdown(int code, t_map *map);
-int				ft_is_valid_char(char c);
-int				ft_is_ber(char *path);
-void			ft_load_sprites(t_game *game);
-void			clean_exit_mlx(int code, t_game *game);
-void			ft_render_sprite_by_id(t_game *game, int id, int x, int y);
-void			ft_render_map(t_game *game);
-unsigned int	ft_crc32b(char *message);
-int				ft_legal_move(int direction, t_game *game);
 char			ft_get_tile_at(t_game *game, int x, int y);
+int				ft_exists(char *path);
+int				ft_is_ber(char *path);
+int				ft_is_valid_char(char c);
+int				ft_key_hook(int keycode, t_game *game);
+int				ft_legal_move(int direction, t_game *game);
+int				ft_map_closed(t_chain_lst *lines);
+int				ft_pseudo_random(int min, int max);
+int				ft_redcross(t_game *game);
+int				ft_valid_charset(char *s);
+int				ft_valid_line_length(t_chain_lst *lines, int expected);
+t_chain_lst		*ft_read_table(t_game *game, char *path, unsigned int crc32);
+t_map			ft_load_map(char *path);
+t_sprite		ft_load_sprite(t_game *game, char *path, unsigned int crc32);
+t_table			ft_parse_line(t_game *game, t_chain_lst *line);
+unsigned int	ft_crc32b(char *message);
+void			clean_exit_mlx(int code, t_game *game);
+void			clean_exit(int code);
+void			ft_change_berries(t_game *game);
+void			ft_increment_clocks(t_game *game);
+void			ft_init_animations(t_game *game);
+void			ft_integrity_table_fail(t_game *game, char *path);
+void			ft_load_fail(t_game *game, char *path);
+void			ft_load_madeline(t_game *game);
+void			ft_load_objects(t_game *game);
+void			ft_load_sprite_table_file(t_game *game, char *path,
+					unsigned int crc32);
+void			ft_load_sprite_table(t_game *game, t_table table, int i);
+void			ft_load_tiles(t_game *game);
+int				ft_loop_hook(t_game *game);
+void			ft_print_markdown(int code, t_map *map);
+void			ft_random_spawn(t_map *map);
+void			ft_register_berry_animation(t_game *game, int x, int y);
+void			ft_register_seed_animation(t_game *game, int x, int y);
+void			ft_render_animation(t_game *game, t_animation *animation);
+void			ft_render_animations(t_game *game);
+void			ft_render_map(t_game *game);
+void			ft_render_sprite_by_id(t_game *game, int id, int x, int y);
+void			ft_stop_animation(t_game *game, int x, int y);
+int				ft_compute_size(int width);
+void			ft_set_animation(t_game *game);
+void			ft_set_animation(t_game *game);
+int				ft_table_size(int width);
 #endif
