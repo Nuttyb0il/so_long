@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:26:34 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/27 20:25:54 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/29 17:59:21 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,9 @@ void	ft_init_game(t_game *game, char *map, char *debug)
 		clean_exit_mlx(1, game);
 	game->game_window = mlx_new_window(game->mlx_ptr,
 			ft_compute_size(game->map_data.width),
-			ft_compute_size(game->map_data.height) + 24,
+			ft_compute_size(game->map_data.height),
 			"so_long");
+	// TODO : Check if game_window is null
 	ft_load_game_sprite(game, debug);
 	game->player_image = game->sprites[7].image;
 	ft_render_map(game);
@@ -61,8 +62,6 @@ void	ft_init_game(t_game *game, char *map, char *debug)
 int	main(int argc, char **argv)
 {
 	t_game	game;
-	int		width;
-	int		height;
 
 	// if (argc >= 2)
 	// {
