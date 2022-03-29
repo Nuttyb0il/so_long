@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 23:51:30 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/27 16:33:13 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/29 17:42:12 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ void	ft_change_berries(t_game *game)
 	while (i < game->animated_objects)
 	{
 		if (game->animations[i].obj_type == BERRY_ANIMATION_ID)
+		{
+			game->animations[i].obj_type = -1;
 			game->animations[i].base_offset -= 5;
+		}
 		i++;
 	}
 }
@@ -72,7 +75,7 @@ void	ft_render_animation(t_game *game, t_animation *animation)
 	}
 	else if (!animation->baf_mode && animation->frame > animation->frame_count)
 		animation->frame = 0;
-	if (animation->clock >= 1200)
+	if (animation->clock >= ANIMATION_DELAY / 1.6)
 	{
 		ft_refresh_baf(animation);
 		animation->clock = 0;
