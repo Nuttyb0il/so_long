@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 11:39:53 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/27 17:04:15 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/29 16:17:57 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 
 // Other constants
 # define SPRITE_COUNT 33
-# define ANIMATION_DELAY 1700
+# define ANIMATION_DELAY 6000
 
 // Object animation
 # define BERRY_ANIMATION_ID 255
@@ -152,4 +152,5 @@ int				ft_compute_size(int width);
 void			ft_set_animation(t_game *game);
 void			ft_set_animation(t_game *game);
 int				ft_table_size(int width);
+void			ft_map_read_fail(t_game *game, char *path);
 #endif
