@@ -36,7 +36,7 @@ Bonus :
 Reste à faire (trié par importance) : 
 [✅] Fichier .tbl
 [✅] Faire rebondir objets
-[⏳] Table debug
+[✅]] Table debug
 [⏳] Utiliser des sprites plus petit si la map est très grande
 [⏳] Barre de status
-[⏳] Level designer
+[✅] Level designer
