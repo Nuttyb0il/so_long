@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:31:02 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/21 14:15:04 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/29 16:22:36 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,14 @@ void	ft_print_char(int code, char c)
 		ft_fprintf(STDERR, "%s%c%s", GREEN2, c, RESET);
 	else if (code == INVALID_LINE_LENGTH && c == '1')
 		ft_fprintf(STDERR, "%s%c%s", YELLOW, c, RESET);
+	else if (code == INVALID_COLLECTIBLES && c == 'C')
+		ft_fprintf(STDERR, "%s%c%s", RED2, c, RESET);
+	else if (code == INVALID_SPAWNS && c == 'S')
+		ft_fprintf(STDERR, "%s%c%s", RED2, c, RESET);
+	else if (code == INVALID_EXITS && c == 'E')
+		ft_fprintf(STDERR, "%s%c%s", RED2, c, RESET);
+	else
+		ft_fprintf(STDERR, "%s%c%s", GREEN2, c, RESET);
 }
 
 void	ft_print_error(int code)
