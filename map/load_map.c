@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 11:41:38 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/27 01:22:24 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/29 16:19:58 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,6 @@ int	ft_sanity_check(t_map *map)
 	while (map->map[i] && map->map[i] != '\n')
 		i++;
 	map->width = i;
-	map->collectibles = ft_count_words(map->map, "C");
-	map->spawns = ft_count_words(map->map, "P");
-	map->exits = ft_count_words(map->map, "E");
 	invalid_elements = ft_markdown_code(map);
 	if (invalid_elements != 0)
 		ft_print_markdown(invalid_elements, map);
@@ -118,7 +115,12 @@ t_map	ft_load_map(char *path)
 	}
 	ft_open_file(path);
 	map.map = ft_read_file(path);
+	if (map.map == NULL)
+		clean_exit(1);
 	map.length = ft_strlen(map.map);
+	map.collectibles = ft_count_words(map.map, "C");
+	map.spawns = ft_count_words(map.map, "P");
+	map.exits = ft_count_words(map.map, "E");
 	ft_random_spawn(&map);
 	map.lines = ft_split(map.map, "\n");
 	map.sanity = ft_sanity_check(&map);
