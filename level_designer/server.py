@@ -33,6 +33,8 @@ def levels():
 @app.route("/load_level", method="POST")
 def load():
 	name = request.forms.get("name")
+	if "~" in name or "." in name or ".ber" not in name:
+		return
 	path = os.path.join("../maps", name)
 	with open(path, "r") as f:
 		data = f.read()
