@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 11:39:53 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/29 16:17:57 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/30 15:12:18 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct s_game
 	int				direction;
 	int				animated_objects;
 	int				anim_inits;
+	int				tile_size;
 	long long int	moves;
 	long long int	game_clock;
 	t_animation		*animations;
@@ -148,7 +149,6 @@ void			ft_render_animations(t_game *game);
 void			ft_render_map(t_game *game);
 void			ft_render_sprite_by_id(t_game *game, int id, int x, int y);
 void			ft_stop_animation(t_game *game, int x, int y);
-int				ft_compute_size(int width);
 void			ft_set_animation(t_game *game);
 void			ft_set_animation(t_game *game);
 int				ft_table_size(int width);
