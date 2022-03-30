@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 17:15:39 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/27 16:38:29 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/30 15:02:37 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,15 @@ int	ft_legal_move(int direction, t_game *game)
 	int		x;
 	int		y;
 
-	x = game->x / 64;
-	y = game->y / 64;
+	x = game->x / game->tile_size;
+	y = game->y / game->tile_size;
 	ft_compute_move(direction, &x, &y);
 	tile = ft_get_tile_at(game, x, y);
 	if (tile == 'C')
 	{
 		game->map_data.collectibles--;
 		game->map_data.flat[y * game->map_data.width + x] = '0';
-		ft_stop_animation(game, x * 64, y * 64);
+		ft_stop_animation(game, x * game->tile_size, y * game->tile_size);
 		if (game->map_data.collectibles == 0)
 			ft_refresh_exits(game);
 	}

@@ -6,23 +6,23 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 16:09:41 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/27 16:42:48 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/30 15:01:56 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 #include "../includes/mlx.h"
 
-void	ft_compute_new_position(int direction, int *x, int *y)
+void	ft_compute_new_position(int direction, int *x, int *y, int size)
 {
 	if (direction == UP)
-		(*y) -= 64;
+		(*y) -= size;
 	if (direction == DOWN)
-		(*y) += 64;
+		(*y) += size;
 	if (direction == LEFT)
-		(*x) -= 64;
+		(*x) -= size;
 	if (direction == RIGHT)
-		(*x) += 64;
+		(*x) += size;
 }
 
 int	ft_key_hook(int keycode, t_game *game)
@@ -39,8 +39,8 @@ int	ft_key_hook(int keycode, t_game *game)
 		game->direction = keycode;
 		if (!ft_legal_move(keycode, game))
 			return (0);
-		ft_compute_new_position(keycode, &game->x, &game->y);
-		if (ft_get_tile_at(game, x / 64, y / 64) != 'E')
+		ft_compute_new_position(keycode, &game->x, &game->y, game->tile_size);
+		if (ft_get_tile_at(game, x / game->tile_size, y / game->tile_size) != 'E')
 		{
 			mlx_put_image_to_window(game->mlx_ptr, game->game_window,
 				game->player_image, game->x, game->y);
