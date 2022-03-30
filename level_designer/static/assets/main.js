@@ -83,7 +83,7 @@ function GenerateTemplate() {
 		return;
 	}
 	let height, width;
-	[height, width] = levelSize.split("x");
+	[width, height] = levelSize.split("x");
 	if (height == null || width == null) {
 		alert("Invalid level size");
 		return;
