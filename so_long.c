@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:26:34 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/30 15:25:48 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/31 12:13:19 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@
 // (negative size)
 void	ft_load_game_sprite(t_game *game)
 {
-	game->tile_size = ft_table_size(game->map_data.width);
-	if (game->tile_size == 64)
+	game->size = ft_table_size(game->map_data.width);
+	if (game->size == 64)
 		ft_load_sprite_table_file(game, "assets/x64.tbl", 2822933351);
-	else if (game->tile_size == 32)
+	else if (game->size == 32)
 		ft_load_sprite_table_file(game, "assets/x32.tbl", 2166143880);
-	else if (game->tile_size == 48)
+	else if (game->size == 48)
 		ft_load_sprite_table_file(game, "assets/x48.tbl", 968777608);
 	else
 		ft_load_sprite_table_file(game, "assets/x32.tbl", 2166143880);
@@ -44,8 +44,8 @@ void	ft_init_game(t_game *game, char *map)
 		clean_exit_mlx(1, game);
 	ft_load_game_sprite(game);
 	game->game_window = mlx_new_window(game->mlx_ptr,
-			game->map_data.width * game->tile_size,
-			game->map_data.height * game->tile_size,
+			game->map_data.width * game->size,
+			game->map_data.height * game->size,
 			"so_long");
 	if (!game->game_window)
 		clean_exit_mlx(1, game);
