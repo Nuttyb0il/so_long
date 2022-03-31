@@ -5,33 +5,34 @@ NAME_MLX = libmlx.a
 MLX_DIR = minilibx-linux
 
 NORMINETTE_BIN = norminette
+NM_BIN = nm
 
 SRCS =  animations/clocks.c \
-        animations/init.c \
-        animations/player.c \
-        animations/register.c \
-        animations/render.c \
-        animations/stop.c \
-        errors/clean_exit.c \
-        errors/load_fail.c \
-        errors/markdown.c \
-        hooks/key_hook.c \
-        hooks/loop.c \
-        hooks/redcross.c \
-        map/collision.c \
-        map/is_ber.c \
-        map/line_length.c \
-        map/load_map.c \
-        map/map_closed.c \
-        map/valid_charset.c \
-        portrait/integrity.c \
-        portrait/load_sprite.c \
-        portrait/render_map.c \
-        portrait/render_sprite.c \
-        portrait/table.c \
-        utils/adaptive_size.c \
-        utils/random.c \
-        utils/spawn.c \
+		animations/init.c \
+		animations/player.c \
+		animations/register.c \
+		animations/render.c \
+		animations/stop.c \
+		errors/clean_exit.c \
+		errors/load_fail.c \
+		errors/markdown.c \
+		hooks/key_hook.c \
+		hooks/loop.c \
+		hooks/redcross.c \
+		map/collision.c \
+		map/is_ber.c \
+		map/line_length.c \
+		map/load_map.c \
+		map/map_closed.c \
+		map/valid_charset.c \
+		portrait/integrity.c \
+		portrait/load_sprite.c \
+		portrait/render_map.c \
+		portrait/render_sprite.c \
+		portrait/table.c \
+		utils/adaptive_size.c \
+		utils/random.c \
+		utils/spawn.c \
 		so_long.c \
 
 OBJS := ${SRCS:.c=.o}
@@ -78,4 +79,7 @@ norme:
 	@${NORMINETTE_BIN} ${SRCS} includes/so_long.h
 	make -C libft/ norme
 
-.PHONY: all clean fclean re norme
+sym:
+	${NM_BIN} -n $(OBJS)
+
+.PHONY: all clean fclean re norme sym
