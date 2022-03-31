@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 23:51:30 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/29 17:42:12 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/31 12:06:17 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 void	ft_change_berries(t_game *game)
 {
-	t_animation	anim;
 	int			i;
 
 	i = 0;
