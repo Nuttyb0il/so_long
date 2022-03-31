@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 11:41:38 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/31 14:01:01 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/31 14:12:39 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	ft_open_file(char *path)
 	int		fd;
 	char	*copy;
 
+	fd = -1;
 	copy = ft_strdup(path);
 	ft_strlwr(copy);
 	if (ft_endswith(copy, ".ber"))
@@ -56,8 +57,6 @@ int	ft_open_file(char *path)
 			);
 		ft_clean_exit(ERROR);
 	}
-	ft_free(&copy);
-	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{
 		ft_fprintf(STDERR,
@@ -65,6 +64,7 @@ int	ft_open_file(char *path)
 			);
 		ft_clean_exit(ERROR);
 	}
+	ft_free(&copy);
 	close(fd);
 	return (TRUE);
 }
