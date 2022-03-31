@@ -34,6 +34,7 @@ SRCS =  animations/clocks.c \
 		utils/random.c \
 		utils/spawn.c \
 		utils/window.c \
+		status_bar/init.c \
 		so_long.c \
 
 OBJS := ${SRCS:.c=.o}
@@ -44,7 +45,7 @@ RM = rm -f
 
 INCLUDE_DIR = includes
 
-CFLAGS = -Wall -Wextra -Werror -O2
+CFLAGS = -Wall -Wextra -Werror -O2 -g3
 
 MLX_FLAGS = -lXext -lX11
 
