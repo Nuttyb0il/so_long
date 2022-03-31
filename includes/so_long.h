@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 11:39:53 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/30 15:12:18 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/31 12:13:49 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ typedef struct s_game
 	int				direction;
 	int				animated_objects;
 	int				anim_inits;
-	int				tile_size;
+	int				size;
 	long long int	moves;
 	long long int	game_clock;
 	t_animation		*animations;
@@ -142,8 +142,8 @@ void			ft_load_tiles(t_game *game);
 int				ft_loop_hook(t_game *game);
 void			ft_print_markdown(int code, t_map *map);
 void			ft_random_spawn(t_map *map);
-void			ft_register_berry_animation(t_game *game, int x, int y);
-void			ft_register_seed_animation(t_game *game, int x, int y);
+void			ft_register_berry_anim(t_game *game, int x, int y);
+void			ft_register_seed_anim(t_game *game, int x, int y);
 void			ft_render_animation(t_game *game, t_animation *animation);
 void			ft_render_animations(t_game *game);
 void			ft_render_map(t_game *game);
@@ -152,5 +152,4 @@ void			ft_stop_animation(t_game *game, int x, int y);
 void			ft_set_animation(t_game *game);
 void			ft_set_animation(t_game *game);
 int				ft_table_size(int width);
-void			ft_map_read_fail(t_game *game, char *path);
 #endif
