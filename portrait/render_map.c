@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 19:44:52 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/30 15:02:48 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/31 12:13:49 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ void	ft_render_map(t_game *game)
 		while (str[++i])
 		{
 			if (str[i] == 'E')
-				ft_register_berry_animation(game, i * game->tile_size, j * game->tile_size);
+				ft_register_berry_anim(game, i * game->size, j * game->size);
 			if (str[i] == 'C')
-				ft_register_seed_animation(game, i * game->tile_size, j * game->tile_size);
-			ft_render_tile(game, str[i], i * game->tile_size, j * game->tile_size);
+				ft_register_seed_anim(game, i * game->size, j * game->size);
+			ft_render_tile(game, str[i], i * game->size, j * game->size);
 		}
 		i = -1;
 		j++;
