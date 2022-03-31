@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 14:21:08 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/31 14:41:08 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/31 15:02:08 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,16 @@ void	ft_create_window(t_game *game)
 {
 	int	width;
 	int	height;
+	int	screen_width;
+	int	screen_height;
 
+	screen_height = 0;
+	screen_width = 0;
 	width = game->map_data.width * game->size;
-	height = game->map_data.height * game->size;
+	height = game->map_data.height * game->size + game->size;
+	mlx_get_screen_size(game->mlx_ptr, &screen_width, &screen_height);
+	if (width > screen_width || height > screen_height)
+		ft_confirm(game);
 	game->game_window = mlx_new_window(game->mlx_ptr, width, height, "so_long");
 	if (!game->game_window)
 		ft_clean_exit_mlx(1, game);
