@@ -33,6 +33,7 @@ SRCS =  animations/clocks.c \
 		utils/adaptive_size.c \
 		utils/random.c \
 		utils/spawn.c \
+		utils/window.c \
 		so_long.c \
 
 OBJS := ${SRCS:.c=.o}

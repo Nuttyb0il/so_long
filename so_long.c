@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:26:34 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/31 14:01:01 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/31 14:38:38 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 // (negative size)
 void	ft_load_game_sprite(t_game *game)
 {
-	game->size = ft_table_size(game->map_data.width);
+	game->size = ft_table_size(game);
 	if (game->size == 64)
 		ft_load_sprite_table_file(game, "assets/x64.tbl", 2822933351);
 	else if (game->size == 32)
@@ -30,7 +30,11 @@ void	ft_load_game_sprite(t_game *game)
 	else if (game->size == 48)
 		ft_load_sprite_table_file(game, "assets/x48.tbl", 968777608);
 	else
+	{
+		ft_confirm(game);
+		game->size = 32;
 		ft_load_sprite_table_file(game, "assets/x32.tbl", 2166143880);
+	}
 }
 
 void	ft_init_game(t_game *game, char *map)
@@ -43,10 +47,7 @@ void	ft_init_game(t_game *game, char *map)
 	if (!game->mlx_ptr)
 		ft_clean_exit_mlx(1, game);
 	ft_load_game_sprite(game);
-	game->game_window = mlx_new_window(game->mlx_ptr,
-			game->map_data.width * game->size,
-			game->map_data.height * game->size,
-			"so_long");
+	ft_create_window(game);
 	if (!game->game_window)
 		ft_clean_exit_mlx(1, game);
 	game->player_image = game->sprites[7].image;

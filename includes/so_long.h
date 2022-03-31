@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 11:39:53 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/31 14:01:01 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/31 14:36:59 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,5 +151,7 @@ void			ft_render_sprite_by_id(t_game *game, int id, int x, int y);
 void			ft_stop_animation(t_game *game, int x, int y);
 void			ft_set_animation(t_game *game);
 void			ft_set_animation(t_game *game);
-int				ft_table_size(int width);
+int				ft_table_size(t_game *game);
+void			ft_confirm(t_game *game);
+void			ft_create_window(t_game *game);
 #endif
