@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 19:17:57 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/27 16:59:14 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/31 14:01:01 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ void	ft_render_sprite_by_id(t_game *game, int id, int x, int y)
 		ft_fprintf(STDERR,
 			RED2"Error : "INDIANRED2"Failed to render sprite %s#%d%s\n",
 			ORANGE2, id, RESET);
-		clean_exit_mlx(1, game);
+		ft_clean_exit_mlx(1, game);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:46:57 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/31 12:07:13 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/31 14:01:01 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	check_integrity(t_game *game, char *path, unsigned int crc32)
 			RED2"Error : "INDIANRED2"Unable to verify integrity of : %s%s\n"
 			GREEN2"FIX : %sRestore the original file.\n%s",
 			ORANGE2, path, YELLOW, RESET);
-		clean_exit_mlx(1, game);
+		ft_clean_exit_mlx(1, game);
 	}
 }
 

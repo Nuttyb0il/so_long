@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 17:15:39 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/31 12:31:32 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/31 14:01:01 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,6 @@ int	ft_legal_move(int direction, t_game *game)
 			ft_refresh_exits(game);
 	}
 	else if (tile == 'E' && game->map_data.collectibles <= 0)
-		clean_exit_mlx(0, game);
+		ft_clean_exit_mlx(0, game);
 	return (tile != '1');
 }

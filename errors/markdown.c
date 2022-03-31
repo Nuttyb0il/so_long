@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:31:02 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/29 16:22:36 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/31 14:01:01 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,5 @@ void	ft_print_markdown(int code, t_map *map)
 	ft_fprintf(STDERR,
 		GREEN2"  █"RESET"  Valid character surrounded by walls"
 		);
-	clean_exit(code);
+	ft_clean_exit(code);
 }

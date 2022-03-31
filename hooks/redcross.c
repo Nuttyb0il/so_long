@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 16:07:53 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/27 16:43:17 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/31 14:01:01 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int	ft_redcross(t_game *game)
 {
-	clean_exit_mlx(0, game);
+	ft_clean_exit_mlx(0, game);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 15:49:12 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/27 16:34:53 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/31 14:01:01 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_load_fail(t_game *game, char *path)
 		ft_fprintf(STDERR,
 			RED2"Error : "INDIANRED2"Failed to load : %s%s\n",
 			ORANGE2, path);
-	clean_exit_mlx(1, game);
+	ft_clean_exit_mlx(1, game);
 }
 
 void	ft_integrity_table_fail(t_game *game, char *path)
@@ -50,5 +50,5 @@ void	ft_integrity_table_fail(t_game *game, char *path)
 	ft_fprintf(STDERR,
 		RED2"Error : "INDIANRED2"Sprite table : %s%s%s has been altered.\n%s",
 		ORANGE2, path, INDIANRED2, RESET);
-	clean_exit_mlx(1, game);
+	ft_clean_exit_mlx(1, game);
 }

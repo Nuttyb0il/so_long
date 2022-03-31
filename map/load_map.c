@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 11:41:38 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/29 16:19:58 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/31 14:01:01 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ft_flatten_map(char *s)
 	j = 0;
 	new_size = ft_strlen(s) - ft_count_words(s, "\n") + 1;
 	if (!ft_malloc(&flattened, sizeof(char), new_size))
-		clean_exit(1);
+		ft_clean_exit(1);
 	while (s[i])
 	{
 		if (s[i] != '\n')
@@ -54,7 +54,7 @@ int	ft_open_file(char *path)
 		ft_fprintf(STDERR,
 			RED2"Error: "INDIANRED1"'%s'"ORANGE2" is not a map file\n"RESET, path
 			);
-		clean_exit(ERROR);
+		ft_clean_exit(ERROR);
 	}
 	ft_free(&copy);
 	fd = open(path, O_RDONLY);
@@ -63,7 +63,7 @@ int	ft_open_file(char *path)
 		ft_fprintf(STDERR,
 			RED2"Error: "ORANGE2"failed to open : "INDIANRED1"'%s'\n"RESET, path
 			);
-		clean_exit(ERROR);
+		ft_clean_exit(ERROR);
 	}
 	close(fd);
 	return (TRUE);
@@ -111,12 +111,12 @@ t_map	ft_load_map(char *path)
 		ft_fprintf(STDERR,
 			RED2"Error: "ORANGE2"%s"RED2" is not a map file\n"RESET, path
 			);
-		clean_exit(1);
+		ft_clean_exit(1);
 	}
 	ft_open_file(path);
 	map.map = ft_read_file(path);
 	if (map.map == NULL)
-		clean_exit(1);
+		ft_clean_exit(1);
 	map.length = ft_strlen(map.map);
 	map.collectibles = ft_count_words(map.map, "C");
 	map.spawns = ft_count_words(map.map, "P");

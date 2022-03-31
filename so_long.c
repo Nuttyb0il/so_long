@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:26:34 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/31 12:13:19 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/31 14:01:01 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ void	ft_init_game(t_game *game, char *map)
 	game->map_data = ft_load_map(map);
 	game->mlx_ptr = mlx_init();
 	if (!game->mlx_ptr)
-		clean_exit_mlx(1, game);
+		ft_clean_exit_mlx(1, game);
 	ft_load_game_sprite(game);
 	game->game_window = mlx_new_window(game->mlx_ptr,
 			game->map_data.width * game->size,
 			game->map_data.height * game->size,
 			"so_long");
 	if (!game->game_window)
-		clean_exit_mlx(1, game);
+		ft_clean_exit_mlx(1, game);
 	game->player_image = game->sprites[7].image;
 	ft_render_map(game);
 }
@@ -63,7 +63,7 @@ int	main(int argc, char **argv)
 			PURPLE1"Usage: %s%s%s <map>\n%sExample :\n\t%s%s%s maps/map_01.ber%s",
 			HOTPINK4, argv[0], YELLOW, PURPLE1, HOTPINK4, argv[0], YELLOW, RESET
 			);
-		clean_exit(1);
+		ft_clean_exit(1);
 	}
 	ft_bzero(&game, sizeof(t_game));
 	ft_init_game(&game, argv[1]);
@@ -71,6 +71,6 @@ int	main(int argc, char **argv)
 	mlx_hook(game.game_window, 2, 1, ft_key_hook, &game);
 	mlx_loop_hook(game.mlx_ptr, ft_loop_hook, &game);
 	mlx_loop(game.mlx_ptr);
-	clean_exit_mlx(0, &game);
+	ft_clean_exit_mlx(0, &game);
 	return (0);
 }

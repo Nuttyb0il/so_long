@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 11:39:53 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/31 12:13:49 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/31 14:01:01 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,8 @@ t_map			ft_load_map(char *path);
 t_sprite		ft_load_sprite(t_game *game, char *path, unsigned int crc32);
 t_table			ft_parse_line(t_game *game, t_chain_lst *line);
 unsigned int	ft_crc32b(char *message);
-void			clean_exit_mlx(int code, t_game *game);
-void			clean_exit(int code);
+void			ft_clean_exit_mlx(int code, t_game *game);
+void			ft_clean_exit(int code);
 void			ft_change_berries(t_game *game);
 void			ft_increment_clocks(t_game *game);
 void			ft_init_animations(t_game *game);

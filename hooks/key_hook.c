@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 16:09:41 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/31 12:13:19 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/31 14:01:01 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_key_hook(int keycode, t_game *game)
 	x = game->x;
 	y = game->y;
 	if (keycode == ESC)
-		clean_exit_mlx(0, game);
+		ft_clean_exit_mlx(0, game);
 	if (keycode == UP || keycode == DOWN || keycode == RIGHT || keycode == LEFT)
 	{
 		game->direction = keycode;

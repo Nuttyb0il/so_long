@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_exit.c                                       :+:      :+:    :+:   */
+/*   ft_clean_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -19,7 +19,7 @@
 #include <unistd.h>
 
 // clean exit but when MLX is initialized
-void	clean_exit_mlx(int code, t_game *game)
+void	ft_clean_exit_mlx(int code, t_game *game)
 {
 	int		i;
 
@@ -33,15 +33,15 @@ void	clean_exit_mlx(int code, t_game *game)
 	if (game->mlx_ptr)
 		mlx_loop_end(game->mlx_ptr);
 	else
-		clean_exit(code);
+		ft_clean_exit(code);
 	if (game->game_window)
 		mlx_destroy_window(game->mlx_ptr, game->game_window);
 	mlx_destroy_display(game->mlx_ptr);
 	free(game->mlx_ptr);
-	clean_exit(code);
+	ft_clean_exit(code);
 }
 
-void	clean_exit(int code)
+void	ft_clean_exit(int code)
 {
 	ft_full_free();
 	exit(code);
