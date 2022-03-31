@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:46:57 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/27 16:59:30 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/31 12:07:13 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ t_sprite	ft_load_sprite(t_game *game, char *path, unsigned int crc32)
 {
 	t_sprite	sprite;
 	int			size;
-	char		*content;
 
 	if (!ft_exists(path))
 		ft_load_fail(game, path);
