@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 00:42:43 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/27 16:33:45 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/31 12:48:32 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_stop_animation(t_game *game, int x, int y)
 {
-	int	i;
+	register int	i;
 
 	i = 0;
 	while (i < game->anim_inits)
@@ -24,6 +24,6 @@ void	ft_stop_animation(t_game *game, int x, int y)
 			game->animations[i].stop = 1;
 			return ;
 		}
-		i++;
+		++i;
 	}
 }

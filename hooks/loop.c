@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 16:08:50 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/27 16:43:23 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/31 13:09:11 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	ft_loop_hook(t_game *game)
 {
-	game->game_clock++;
+	++game->game_clock;
 	ft_increment_clocks(game);
 	ft_set_animation(game);
 	mlx_put_image_to_window(game->mlx_ptr, game->game_window,

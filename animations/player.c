@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:01:14 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/27 17:01:21 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/31 13:21:45 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	ft_set_animation(t_game *game)
 {
 	static int	offset = 0;
 
-	if (game->game_clock == ANIMATION_DELAY)
+	if (game->game_clock >= ANIMATION_DELAY)
 	{
-		offset++;
+		++offset;
 		game->game_clock = 0;
 	}
 	if (offset == 4)

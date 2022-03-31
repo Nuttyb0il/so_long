@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 23:51:30 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/31 12:06:17 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/31 13:21:32 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	ft_change_berries(t_game *game)
 {
-	int			i;
+	register int	i;
 
 	i = 0;
 	while (i < game->animated_objects)
@@ -26,19 +26,19 @@ void	ft_change_berries(t_game *game)
 			game->animations[i].obj_type = -1;
 			game->animations[i].base_offset -= 5;
 		}
-		i++;
+		++i;
 	}
 }
 
 void	ft_render_animations(t_game *game)
 {
-	int	i;
+	register int	i;
 
 	i = 0;
 	while (i < game->anim_inits)
 	{
 		ft_render_animation(game, &game->animations[i]);
-		i++;
+		++i;
 	}
 }
 
@@ -51,14 +51,14 @@ void	ft_refresh_baf(t_animation *animation)
 			if (animation->frame == 0)
 				animation->baf_direction = 1;
 			else
-				animation->frame--;
+				--animation->frame;
 		}
 		else
 		{
 			if (animation->frame == animation->frame_count)
 				animation->baf_direction = 0;
 			else
-				animation->frame++;
+				++animation->frame;
 		}
 	}
 }
