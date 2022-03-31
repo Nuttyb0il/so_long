@@ -1,5 +1,7 @@
 NAME = libft.a
 
+NORMINETTE_BIN = norminette
+
 SRCS =  ft_printf/ft_printf.c \
 		ft_printf/ft_printf_utils.c \
 		ft_printf/ft_fprintf.c \
@@ -100,7 +102,7 @@ RM = rm -f
 
 INC_DIR = includes
 
-CFLAGS =  -Wall -Wextra -Werror -O2 -g3
+CFLAGS =  -Wall -Wextra -Werror -O2
 
 .c.o:
 	${CC} ${CFLAGS} -c -I ${INC_DIR} $< -o ${<:.c=.o}
@@ -118,4 +120,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+norme:
+	@${NORMINETTE_BIN} ${SRCS} includes
+
+.PHONY: all clean fclean re norme
