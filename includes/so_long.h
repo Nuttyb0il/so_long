@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 11:39:53 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/31 14:36:59 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/31 15:14:46 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define ESC 65307
 
 // Other constants
-# define SPRITE_COUNT 33
+# define SPRITE_COUNT 34
 # define ANIMATION_DELAY 6000
 
 // Object animation
@@ -154,4 +154,5 @@ void			ft_set_animation(t_game *game);
 int				ft_table_size(t_game *game);
 void			ft_confirm(t_game *game);
 void			ft_create_window(t_game *game);
+void			ft_init_status(t_game *game);
 #endif
