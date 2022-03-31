@@ -6,13 +6,13 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 23:56:18 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/27 16:33:41 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/31 12:13:49 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	ft_register_berry_animation(t_game *game, int x, int y)
+void	ft_register_berry_anim(t_game *game, int x, int y)
 {
 	t_animation	animation;
 
@@ -30,7 +30,7 @@ void	ft_register_berry_animation(t_game *game, int x, int y)
 	game->anim_inits++;
 }
 
-void	ft_register_seed_animation(t_game *game, int x, int y)
+void	ft_register_seed_anim(t_game *game, int x, int y)
 {
 	t_animation	animation;
 
