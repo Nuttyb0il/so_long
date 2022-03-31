@@ -31,12 +31,12 @@ Bonus :
 (comme on a le droit d'inventer nos bonus)
 [⭐] Parser intéractif avec un joli linter
 [⭐] Sprites placés aléatoirement dans une tile
-[🐛] Spawn aléatoire si il y a plusieurs spawns dans la carte 
+[⭐] Spawn aléatoire si il y a plusieurs spawns dans la carte 
 
 Reste à faire (trié par importance) : 
 [✅] Fichier .tbl
 [✅] Faire rebondir objets
-[✅]] Table debug
-[⏳] Utiliser des sprites plus petit si la map est très grande
-[⏳] Barre de status
+[✅] Table debug
+[✅] Utiliser des sprites plus petit si la map est très grande
 [✅] Level designer
+[⏳] Barre de status
