@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 16:09:41 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/30 15:01:56 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/03/31 12:13:19 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int	ft_key_hook(int keycode, t_game *game)
 		game->direction = keycode;
 		if (!ft_legal_move(keycode, game))
 			return (0);
-		ft_compute_new_position(keycode, &game->x, &game->y, game->tile_size);
-		if (ft_get_tile_at(game, x / game->tile_size, y / game->tile_size) != 'E')
+		ft_compute_new_position(keycode, &game->x, &game->y, game->size);
+		if (ft_get_tile_at(game, x / game->size, y / game->size) != 'E')
 		{
 			mlx_put_image_to_window(game->mlx_ptr, game->game_window,
 				game->player_image, game->x, game->y);
