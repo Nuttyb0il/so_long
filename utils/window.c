@@ -31,6 +31,7 @@ void	ft_confirm(t_game *game)
 		ft_clean_exit_mlx(0, game);
 }
 
+// TODO : level_04.ber triggers a confirmation but should not
 void	ft_create_window(t_game *game)
 {
 	int	width;
