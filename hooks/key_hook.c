@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 16:09:41 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/31 14:01:01 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/04/06 01:16:35 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,7 @@ int	ft_key_hook(int keycode, t_game *game)
 		else
 			ft_render_sprite_by_id(game, 32, x, y);
 	}
+	game->moves++;
+	ft_refresh_status(game);
 	return (0);
 }
