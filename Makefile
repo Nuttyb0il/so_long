@@ -34,7 +34,8 @@ SRCS =  animations/clocks.c \
 		utils/random.c \
 		utils/spawn.c \
 		utils/window.c \
-		status_bar/init.c \
+		status_bar/render_number.c \
+		status_bar/update.c \
 		so_long.c \
 
 OBJS := ${SRCS:.c=.o}
