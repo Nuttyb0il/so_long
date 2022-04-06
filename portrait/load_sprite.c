@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:46:57 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/31 14:01:01 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/04/06 13:24:35 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ t_sprite	ft_load_sprite(t_game *game, char *path, unsigned int crc32)
 	size = 64;
 	sprite.path = path;
 	sprite.crc32 = crc32;
+	check_integrity(game, path, crc32);
 	sprite.image = mlx_xpm_file_to_image(game->mlx_ptr, path, &size, &size);
 	if (sprite.image == NULL)
 	{
 		mlx_destroy_image(game->mlx_ptr, sprite.image);
 		ft_load_fail(game, path);
 	}
-	check_integrity(game, path, crc32);
 	game->sprites_init++;
 	return (sprite);
 }
