@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 14:21:08 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/31 15:02:08 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/04/06 01:23:48 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 void	ft_confirm(t_game *game)
 {
 	char	choice[1];
+
 	ft_putendl_fd(
 		RED2"You're about to load a map that's bigger than the screen.",
 		STDERR);
@@ -47,4 +48,6 @@ void	ft_create_window(t_game *game)
 	game->game_window = mlx_new_window(game->mlx_ptr, width, height, "so_long");
 	if (!game->game_window)
 		ft_clean_exit_mlx(1, game);
+	game->win_height = height;
+	game->win_width = width;
 }
