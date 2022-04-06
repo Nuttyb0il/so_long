@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 23:37:53 by jallerha          #+#    #+#             */
-/*   Updated: 2022/04/06 01:24:33 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/04/06 14:17:30 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	ft_update_movements(t_game *game, int collectibles_hidden)
 	ft_render_sprite_by_id(game, 46,
 		x_offset, game->win_height - (game->size / 1.5));
 	x_offset += game->size - (game->size / 1.5);
-	if (n_size + 2 > (game->win_width / game->size) + 1 || game->moves < 0)
+	if ((n_size + 1 + int_size(game->map_data.collectibles))
+		> (game->win_width / game->size) + 1 || game->moves < 0)
 	{
 		ft_render_sprite_by_id(game, 49, x_offset - (game->size / 3),
 			game->win_height - game->size);
