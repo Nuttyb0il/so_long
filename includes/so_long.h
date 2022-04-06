@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 11:39:53 by jallerha          #+#    #+#             */
-/*   Updated: 2022/03/31 15:14:46 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/04/06 01:23:48 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define ESC 65307
 
 // Other constants
-# define SPRITE_COUNT 34
+# define SPRITE_COUNT 51
 # define ANIMATION_DELAY 6000
 
 // Object animation
@@ -83,25 +83,25 @@ typedef struct s_sprite
 
 typedef struct s_game
 {
-	t_map			map_data;
-	t_sprite		*sprites;
-	void			*mlx_ptr;
-	void			*game_window;
-	void			*player_image;
-	int				height;
-	int				width;
-	int				sprites_init;
-	int				window_height;
-	int				window_width;
-	int				x;
-	int				y;
-	int				direction;
-	int				animated_objects;
-	int				anim_inits;
-	int				size;
-	long long int	moves;
-	long long int	game_clock;
-	t_animation		*animations;
+	t_map		map_data;
+	t_sprite	*sprites;
+	void		*mlx_ptr;
+	void		*game_window;
+	void		*player_image;
+	int			height;
+	int			width;
+	int			sprites_init;
+	int			win_height;
+	int			win_width;
+	int			x;
+	int			y;
+	int			direction;
+	int			animated_objects;
+	int			anim_inits;
+	int			size;
+	int			moves;
+	int			game_clock;
+	t_animation	*animations;
 }	t_game;
 
 typedef struct s_table
@@ -154,5 +154,7 @@ void			ft_set_animation(t_game *game);
 int				ft_table_size(t_game *game);
 void			ft_confirm(t_game *game);
 void			ft_create_window(t_game *game);
-void			ft_init_status(t_game *game);
+void			ft_render_number(t_game *game, int n, int x);
+void			ft_update_collectibles(t_game *game);
+void			ft_refresh_status(t_game *game);
 #endif
