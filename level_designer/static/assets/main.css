@@ -1,0 +1,55 @@
+.level-tile {
+	border: 1px solid black;
+	height: 64px;
+	width: 64px;
+}
+
+.level-row {
+	display: flex;
+	margin: 0;
+}
+
+.selected {
+	border: 2px solid red;
+}
+
+/* Apply a 2px solid gray border to all :not(.selected) */
+.selectionnable:not(.selected) {
+	border: 2px solid gray;
+}
+
+.wall {
+	background-image: url("/game_sprites/wall.png");
+}
+
+.ice {
+	background-image: url("/game_sprites/ice.png");
+}
+
+.player {
+	background-image: url("/game_sprites/player.png");
+}
+
+.berry {
+	background-image: url("/game_sprites/berry.png");
+}
+
+.seed {
+	background-image: url("/game_sprites/seed.png");
+}
+
+.unknown {
+	background-color: #ccc;
+}
+
+.error {
+	color: red;
+}
+
+.warning {
+	color: orange;
+}
+
+.advice {
+	color: blue;
+}

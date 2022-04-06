@@ -5,27 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/02 17:19:55 by jallerha          #+#    #+#             */
-/*   Updated: 2022/02/02 17:20:30 by jallerha         ###   ########.fr       */
+/*   Created: 2022/03/25 15:12:16 by jallerha          #+#    #+#             */
+/*   Updated: 2022/03/27 16:24:06 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <fcntl.h>
-#include <sys/types.h>
-#include <sys/stat.h>
+#include "../libft/includes/file.h"
+#include "../libft/includes/memory.h"
+#include "../libft/includes/printf.h"
 
-unsigned int	ft_pseudo_random(int min, int max)
+int	ft_pseudo_random(int min, int max)
 {
-	int	fd;
-	int	random;
+	int		c;
+	int		fd;
 
+	c = 0;
 	fd = open("/dev/urandom", O_RDONLY);
-	if (fd == -1)
-		return (0);
-	read(fd, &random, sizeof(int));
+	if (fd < 0)
+		fd = open("/dev/random", O_RDONLY);
+	if (fd < 0)
+		return (min);
+	read(fd, &c, 1);
 	close(fd);
-	if (random < 0)
-		random *= -1;
-	return (random % (max - min + 1) + min);
+	return (min + (c % (max - min)));
 }

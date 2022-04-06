@@ -5,3 +5,9 @@ display
 display_random
 checker
 so_long
+libft.a
+*.o
+libmlx.a
+.gitignore
+test_display
+assets/crc32/crc32
