@@ -48,8 +48,8 @@ int	ft_key_hook(int keycode, t_game *game)
 		}
 		else
 			ft_render_sprite_by_id(game, 32, x, y);
+		game->moves++;
 	}
-	game->moves++;
 	ft_refresh_status(game);
 	return (0);
 }
