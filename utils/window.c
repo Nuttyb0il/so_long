@@ -25,13 +25,12 @@ void	ft_confirm(t_game *game)
 		RED2"You're about to load a map that's bigger than the screen.",
 		STDERR);
 	ft_putstr_fd(
-		ORANGE2"Are you sure you want to continue? (y/n) ", STDERR);
+		ORANGE2"Are you sure you want to continue? (y/N) ", STDERR);
 	read(STDIN, choice, 1);
-	if (choice[0] == 'N' || choice[0] == 'n')
+	if (choice[0] != 'Y' && choice[0] != 'y')
 		ft_clean_exit_mlx(0, game);
 }
 
-// TODO : level_04.ber triggers a confirmation but should not
 void	ft_create_window(t_game *game)
 {
 	int	width;
