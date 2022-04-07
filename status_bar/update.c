@@ -29,42 +29,28 @@ int	int_size(int n)
 	return (c);
 }
 
-void	ft_update_collectibles(t_game *game)
-{
-	ft_render_sprite_by_id(game, 45, 8, game->win_height - game->size);
-	ft_render_sprite_by_id(game, 47, 64, game->win_height - game->size);
-	ft_render_number(game, game->map_data.collectibles, 128);
-}
-
-void	ft_update_movements(t_game *game, int collectibles_hidden)
+void	ft_update_movements(t_game *game)
 {
 	int	n_size;
-	int	x_offset;
 
 	n_size = int_size(game->moves);
-	x_offset = 0;
-	if (collectibles_hidden)
-		x_offset = game->win_width - (8 + game->size * (n_size + 1));
-	ft_render_sprite_by_id(game, 48, x_offset, game->win_height - game->size);
-	x_offset += game->size;
+	ft_render_sprite_by_id(game, 48, 0, game->win_height - game->size);
 	ft_render_sprite_by_id(game, 46,
-		x_offset, game->win_height - (game->size / 1.5));
-	x_offset += game->size - (game->size / 1.5);
-	if ((n_size + 1 + int_size(game->map_data.collectibles))
-		> (game->win_width / game->size) + 1 || game->moves < 0)
+		game->size, game->win_height - (game->size / 1.5));
+	if (game->moves >= 0 && int_size(game->moves) + 2
+		< game->win_width / game->size)
+		ft_render_number(game, game->moves, game->size * 1.5);
+	else
 	{
-		ft_render_sprite_by_id(game, 49, x_offset - (game->size / 3),
+		ft_render_sprite_by_id(game, 49, game->size * 1.5,
 			game->win_height - game->size);
 		ft_printf(ORANGE2"Moves : %s%d%s\n", RED3, game->moves, RESET);
 	}
-	else
-		ft_render_number(game, game->moves, x_offset);
 }
 
 void	ft_refresh_status(t_game *game)
 {
 	int	i;
-	int	hide_collectibles;
 
 	i = 0;
 	while (i < game->map_data.width)
@@ -73,8 +59,5 @@ void	ft_refresh_status(t_game *game)
 			game->win_height - game->size);
 		i++;
 	}
-	hide_collectibles = (game->win_width / game->size) > 6;
-	if (hide_collectibles)
-		ft_update_collectibles(game);
-	ft_update_movements(game, hide_collectibles);
+	ft_update_movements(game);
 }
